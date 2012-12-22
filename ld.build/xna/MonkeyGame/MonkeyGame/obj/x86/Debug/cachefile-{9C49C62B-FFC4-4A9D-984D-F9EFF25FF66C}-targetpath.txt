@@ -1,0 +1,5 @@
+Content\monkey\gfx\fonts.png.xnb
+Content\monkey\gfx\sheet.png.xnb
+Content\monkey\gfx\title.png.xnb
+Content\monkey\mojo_font.png.xnb
+Content\monkey\txt\wait.txt

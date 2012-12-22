@@ -1,0 +1,11 @@
+C:\Users\Chris\Documents\GitHub\CM-YATY\ld.build\xna\MonkeyGame\MonkeyGame\bin\x86\Debug\Content\monkey\gfx\fonts.png.xnb
+C:\Users\Chris\Documents\GitHub\CM-YATY\ld.build\xna\MonkeyGame\MonkeyGame\bin\x86\Debug\Content\monkey\gfx\sheet.png.xnb
+C:\Users\Chris\Documents\GitHub\CM-YATY\ld.build\xna\MonkeyGame\MonkeyGame\bin\x86\Debug\Content\monkey\gfx\title.png.xnb
+C:\Users\Chris\Documents\GitHub\CM-YATY\ld.build\xna\MonkeyGame\MonkeyGame\bin\x86\Debug\Content\monkey\mojo_font.png.xnb
+C:\Users\Chris\Documents\GitHub\CM-YATY\ld.build\xna\MonkeyGame\MonkeyGame\bin\x86\Debug\MonkeyGame.exe
+C:\Users\Chris\Documents\GitHub\CM-YATY\ld.build\xna\MonkeyGame\MonkeyGame\bin\x86\Debug\MonkeyGame.pdb
+C:\Users\Chris\Documents\GitHub\CM-YATY\ld.build\xna\MonkeyGame\MonkeyGame\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Chris\Documents\GitHub\CM-YATY\ld.build\xna\MonkeyGame\MonkeyGame\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Chris\Documents\GitHub\CM-YATY\ld.build\xna\MonkeyGame\MonkeyGame\obj\x86\Debug\MonkeyGame.exe
+C:\Users\Chris\Documents\GitHub\CM-YATY\ld.build\xna\MonkeyGame\MonkeyGame\obj\x86\Debug\MonkeyGame.pdb
+C:\Users\Chris\Documents\GitHub\CM-YATY\ld.build\xna\MonkeyGame\MonkeyGame\bin\x86\Debug\Content\monkey\txt\wait.txt
