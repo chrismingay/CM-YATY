@@ -7,6 +7,8 @@ Class Level
 	Field txtWait:RazText
 	
 	Method New()
+	
+		Entity.Init()
 		
 		Dog.Init(LDApp.level)
 		Yeti.Init(LDApp.level)

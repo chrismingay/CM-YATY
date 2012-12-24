@@ -1,6 +1,35 @@
 Import ld
 
+
+
+Class EntityType
+	Const BUMP:Int = 0
+	Const DOG:Int = 1
+	Const FLAG:Int = 2
+	Const JUMP:Int = 3
+	Const ROCK:Int = 4
+	Const SKIER:Int = 5
+	Const SNOWBOARDER:Int = 6
+	Const TREE:Int = 7
+	Const YETI:Int = 8
+	
+	
+	
+	Const COUNT:Int = 9
+End
+
 Class Entity
+
+	Global a:Entity[][]
+	
+	Function Init:Void()
+		a = New Entity[EntityType.COUNT][]
+	End
+	
+	Function Register:Void(tType:Int, tArray:Entity[])
+		a[tType] = tArray
+		
+	End
 
 	Const SCREEN_PADDING:Int = 50
 	

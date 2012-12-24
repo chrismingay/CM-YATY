@@ -18,6 +18,7 @@ Class Skier Extends Entity
 		
 		gfxSki = GFX.Tileset.GrabImage(0, 128, 16, 32, 7, Image.MidHandle)
 		
+		Entity.Register(EntityType.SKIER,a)
 	End
 	
 	Function UpdateAll:Void()

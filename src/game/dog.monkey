@@ -16,6 +16,7 @@ Class Dog Extends Entity
 		
 		gfxStandFront = GFX.Tileset.GrabImage(0, 80, 16, 16, 1, Image.MidHandle)
 		
+		Entity.Register(EntityType.DOG, a)
 	End
 	
 	Function UpdateAll:Void()

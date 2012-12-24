@@ -22,6 +22,8 @@ Class Yeti Extends Entity
 		gfxRunLeft = GFX.Tileset.GrabImage(48, 64, 22, 32, 2, Image.MidHandle)
 		gfxRunRight = GFX.Tileset.GrabImage(48, 96, 22, 32, 2, Image.MidHandle)
 		
+		Entity.Register(EntityType.YETI, a)
+		
 	End
 	
 	Function UpdateAll:Void()
