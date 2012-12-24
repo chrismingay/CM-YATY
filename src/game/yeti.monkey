@@ -7,14 +7,19 @@ Class Yeti Extends Entity
 	Global gfxRunLeft:Image
 	Global gfxRunRight:Image
 	
+	Global gfxShadow:Image
+	
+	
 	Global a:Yeti[]
 	Global NextYeti:Int
 	Const MAX_YETIS:Int = 1
 	
 	Function Init:Void(tLev:Level)
 		a = New Yeti[MAX_YETIS]
+		Entity.a[EntityType.YETI] = New Entity[MAX_YETIS]
 		For Local i:Int = 0 Until MAX_YETIS
 			a[i] = New Yeti(tLev)
+			Entity.a[EntityType.YETI][i] = a[i]
 		Next
 		
 		gfxStandFront = GFX.Tileset.GrabImage(48, 0, 22, 32, 2, Image.MidHandle)
@@ -22,7 +27,7 @@ Class Yeti Extends Entity
 		gfxRunLeft = GFX.Tileset.GrabImage(48, 64, 22, 32, 2, Image.MidHandle)
 		gfxRunRight = GFX.Tileset.GrabImage(48, 96, 22, 32, 2, Image.MidHandle)
 		
-		Entity.Register(EntityType.YETI, a)
+		gfxShadow = GFX.Tileset.GrabImage(112, 0, 16, 6, 1, Image.MidHandle)
 		
 	End
 	
@@ -135,7 +140,6 @@ Class Yeti Extends Entity
 		ZS = -1
 		Z = 0
 		Status = YetiStatusTypes.CHASING
-		SFX.Music("chase")
 	End
 	
 	Method UpdateChasing:Void()
@@ -170,7 +174,11 @@ Class Yeti Extends Entity
 			If YS > MaxYS - 0.05 And YS < MaxYS + 0.05
 				YS = MaxYS
 			ElseIf YS > MaxYS
-				YS *= (1.0 - (0.05 * LDApp.Delta))
+				Local tR:Float = 0.02
+				If D = EntityMoveDirection.L Or D = EntityMoveDirection.R
+					tR = 0.04
+				EndIf
+				YS *= (1.0 - (tR * LDApp.Delta))
 			Else
 				YS += (0.05 * LDApp.Delta)
 			EndIf
@@ -253,6 +261,10 @@ Class Yeti Extends Entity
 	
 	
 	Method Render:Void()
+	
+		SetAlpha(0.25)
+		GFX.Draw(gfxShadow, X, Y + 12)
+		SetAlpha(1.0)
 		
 		Select Status
 			Case YetiStatusTypes.CHASING

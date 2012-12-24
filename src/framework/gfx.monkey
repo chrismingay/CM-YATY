@@ -3,9 +3,13 @@ Import ld
 Class GFX
 
 	Global Tileset:Image
+	Global Overlay:Image
+	Global Title:Image
 	
 	Function Init:Void()
 		Tileset = LoadImage("gfx/sheet.png")
+		Overlay = LoadImage("gfx/overlay.png")
+		Title = Tileset.GrabImage(345, 448, 167, 64, 1, Image.MidHandle)
 	End
 	
 	'Function Draw:Void(tX:Float, tY:Float, X:Int, Y:Int, W:Int, H:Int, Follow:Bool = True)

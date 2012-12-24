@@ -10,13 +10,14 @@ Class Dog Extends Entity
 	
 	Function Init:Void(tLev:Level)
 		a = New Dog[MAX_DOGS]
+		Entity.a[EntityType.DOG] = New Entity[MAX_DOGS]
 		For Local i:Int = 0 Until MAX_DOGS
 			a[i] = New Dog(tLev)
+			Entity.a[EntityType.DOG][i] = a[i]
 		Next
 		
 		gfxStandFront = GFX.Tileset.GrabImage(0, 80, 16, 16, 1, Image.MidHandle)
 		
-		Entity.Register(EntityType.DOG, a)
 	End
 	
 	Function UpdateAll:Void()

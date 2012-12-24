@@ -6,4 +6,5 @@ Content\monkey\mus\ambient.mp3.xnb
 Content\monkey\mus\ambient.mp3.wma
 Content\monkey\mus\chase.mp3.xnb
 Content\monkey\mus\chase.mp3.wma
+Content\monkey\gfx\overlay.png.xnb
 Content\monkey\txt\wait.txt

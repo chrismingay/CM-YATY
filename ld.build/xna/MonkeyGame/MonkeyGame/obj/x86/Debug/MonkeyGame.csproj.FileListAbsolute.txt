@@ -13,3 +13,4 @@ C:\Users\Chris\Documents\GitHub\CM-YATY\ld.build\xna\MonkeyGame\MonkeyGame\bin\x
 C:\Users\Chris\Documents\GitHub\CM-YATY\ld.build\xna\MonkeyGame\MonkeyGame\bin\x86\Debug\Content\monkey\mus\chase.mp3.xnb
 C:\Users\Chris\Documents\GitHub\CM-YATY\ld.build\xna\MonkeyGame\MonkeyGame\bin\x86\Debug\Content\monkey\mus\ambient.mp3.wma
 C:\Users\Chris\Documents\GitHub\CM-YATY\ld.build\xna\MonkeyGame\MonkeyGame\bin\x86\Debug\Content\monkey\mus\chase.mp3.wma
+C:\Users\Chris\Documents\GitHub\CM-YATY\ld.build\xna\MonkeyGame\MonkeyGame\bin\x86\Debug\Content\monkey\gfx\overlay.png.xnb

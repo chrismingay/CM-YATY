@@ -5,9 +5,10 @@ Class GameScreen Extends Screen
 	Field level:Level
 	
 	Method OnScreenStart:Void()
-		LDApp.level = New Level()
+		LDApp.level = GenerateLevel()
 		level = LDApp.level
 		
+		level.Start()
 		
 	End
 	

@@ -24,11 +24,19 @@ Class Entity
 	
 	Function Init:Void()
 		a = New Entity[EntityType.COUNT][]
+		For Local i:Int = 0 Until EntityType.COUNT
+			'a[i] = New Entity[50]
+		Next
 	End
 	
 	Function Register:Void(tType:Int, tArray:Entity[])
 		a[tType] = tArray
 		
+		'Local l:Int = tArray.Length
+		'a[tType] = New Entity[l]
+		'For Local i:Int = 0 Until l
+		'	a[tType][i] = tArray
+		'Next
 	End
 
 	Const SCREEN_PADDING:Int = 50

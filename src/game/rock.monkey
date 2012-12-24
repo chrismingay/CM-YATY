@@ -2,21 +2,27 @@ Import ld
 
 Class Rock Extends Entity
 
-	Global gfxStandFront:Image
+	Global gfxRockBoulder:Image
+	Global gfxRockSpikey:Image
+	Global gfxRockFlat:Image
 
 	Global a:Rock[]
 	Global NextRock:Int
-	Const MAX_ROCKS:Int = 10
+	Const MAX_ROCKS:Int = 300
 	
 	Function Init:Void(tLev:Level)
 		a = New Rock[MAX_ROCKS]
+		Entity.a[EntityType.ROCK] = New Entity[MAX_ROCKS]
 		For Local i:Int = 0 Until MAX_ROCKS
 			a[i] = New Rock(tLev)
+			Entity.a[EntityType.ROCK][i] = a[i]
 		Next
 		
-		gfxStandFront = GFX.Tileset.GrabImage(0, 80, 16, 16, 1, Image.MidHandle)
+		gfxRockBoulder = GFX.Tileset.GrabImage(0, 288, 16, 16, 1, Image.MidHandle)
+		gfxRockSpikey = GFX.Tileset.GrabImage(16, 288, 16, 16, 1, Image.MidHandle)
+		gfxRockFlat = GFX.Tileset.GrabImage(32, 288, 16, 16, 1, Image.MidHandle)
 		
-		Entity.Register(EntityType.ROCK, a)
+		
 	End
 	
 	Function UpdateAll:Void()
@@ -41,6 +47,19 @@ Class Rock Extends Entity
 	
 		Local tRock:Int = NextRock
 		
+		Local chance:Float = Rnd()
+		Local tType:Int = 0
+		If chance < 0.33
+			tType = RockType.BOULDER
+		ElseIf chance < 0.66
+			tType = RockType.SPIKEY
+		Else
+			tType = RockType.FLAT
+		EndIf
+		
+		a[NextRock].Type = tType
+		
+		
 		a[NextRock].Activate()
 		a[NextRock].SetPosition(tX, tY)
 		
@@ -52,6 +71,8 @@ Class Rock Extends Entity
 		Return tRock
 	End
 	
+	Field Type:Int
+	
 	Method New(tLev:Level)
 		level = tLev
 	End
@@ -62,14 +83,23 @@ Class Rock Extends Entity
 	
 	Method Update:Void()
 		
-		If Not IsOnScreen()
-			Deactivate()
-		EndIf
-	
 	End
 	
 	Method Render:Void()
-		GFX.Draw(gfxStandFront,X,Y)	
+		Select Type
+			Case RockType.BOULDER
+				GFX.Draw(gfxRockBoulder, X, Y)
+			Case RockType.FLAT
+				GFX.Draw(gfxRockFlat, X, Y)
+			Case RockType.SPIKEY
+				GFX.Draw(gfxRockSpikey, X, Y)
+		End
 	End
 
+End
+
+Class RockType
+	Const BOULDER:Int = 0
+	Const SPIKEY:Int = 1
+	Const FLAT:Int = 2
 End

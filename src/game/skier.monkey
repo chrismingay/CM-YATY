@@ -3,22 +3,27 @@ Import ld
 Class Skier Extends Entity
 
 	Global gfxSki:Image
+	Global gfxTease:Image
+	Global gfxShadow:Image
 	
 	
 	Global a:Skier[]
-	Const MAX_SKIERS:Int = 20
+	Const MAX_SKIERS:Int = 1
 	Global NextSkier:Int
 	
 	
 	Function Init:Void(tLev:Level)
 		a = New Skier[MAX_SKIERS]
+		Entity.a[EntityType.SKIER] = New Entity[MAX_SKIERS]
 		For Local i:Int = 0 Until MAX_SKIERS
 			a[i] = New Skier(tLev)
+			Entity.a[EntityType.SKIER][i] = a[i]
 		Next
 		
 		gfxSki = GFX.Tileset.GrabImage(0, 128, 16, 32, 7, Image.MidHandle)
+		gfxTease = GFX.Tileset.GrabImage(128, 128, 16, 32, 2, Image.MidHandle)
+		gfxShadow = GFX.Tileset.GrabImage(0,160,16,4,1,Image.MidHandle)
 		
-		Entity.Register(EntityType.SKIER,a)
 	End
 	
 	Function UpdateAll:Void()
@@ -66,6 +71,8 @@ Class Skier Extends Entity
 	
 	Field TargetYeti:Int
 	
+	Field teasingFrame:Int = 0
+	
 	Const MAX_YS:Float = 10.0
 	
 	Method New(tLev:Level)
@@ -99,9 +106,11 @@ Class Skier Extends Entity
 		Status = SkierStatusType.SKIING
 		Z = 0
 		D = EntityMoveDirection.D
-		YS = 3.0
+		YS = 4.0
 		XS = 0
 		ZS = -2.0
+		
+		SFX.Music("chase")
 	
 	End
 	
@@ -149,7 +158,7 @@ Class Skier Extends Entity
 			If YS > MaxYS - 0.05 And YS < MaxYS + 0.05
 				YS = MaxYS
 			ElseIf YS > MaxYS
-				YS *= (1.0 - (0.05 * LDApp.Delta))
+				YS *= (1.0 - (0.02 * LDApp.Delta))
 			ElseIf YS < MaxYS
 				YS += (0.05 * LDApp.Delta)
 			EndIf
@@ -221,6 +230,10 @@ Class Skier Extends Entity
 	
 	Method Render:Void()
 		'GFX.Draw(gfxSkiL, X, Y + Z, 0)
+		SetAlpha(0.25)
+		GFX.Draw(gfxShadow, X, Y + 7)
+		SetAlpha(1.0)
+		
 		GFX.Draw(gfxSki, X, Y + Z, D)
 	End
 	
@@ -256,11 +269,11 @@ Class Skier Extends Entity
 			
 				Select vState
 					Case -1
-						DrawImageRect(GFX.Tileset, dX - 4, 1, 32, 176, 8, 9)
+						DrawImageRect(GFX.Tileset, dX - 4, 1, 32, 176, 9, 8)
 					Case 0
 					
 					Case 1
-						DrawImageRect(GFX.Tileset, dX - 4, LDApp.ScreenHeight - 10, 16, 176, 8, 9)
+						DrawImageRect(GFX.Tileset, dX - 4, LDApp.ScreenHeight - 10, 16, 176, 9, 8)
 				End
 			
 			Case 1
