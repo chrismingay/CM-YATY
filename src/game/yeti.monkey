@@ -7,17 +7,6 @@ Class Yeti Extends Entity
 	Global gfxRunLeft:Image
 	Global gfxRunRight:Image
 	
-	
-	Field aniRunFrame:Int = 0
-	Field aniRunFrameTimer:Float = 0.0
-	Const ANI_RUN_FRAME_TIMER_TARGET:Float = 5.0
-	
-	Field aniWaitFrame:Int = 0
-	Field aniWaitFrameTimer:Float = 0.0
-	Const ANI_WAIT_FRAME_TIMER_TARGET:Float = 30.0
-	
-
-
 	Global a:Yeti[]
 	Global NextYeti:Int
 	Const MAX_YETIS:Int = 1
@@ -64,15 +53,31 @@ Class Yeti Extends Entity
 		Return thisYeti
 	End
 	
+	Field aniRunFrame:Int = 0
+	Field aniRunFrameTimer:Float = 0.0
+	Const ANI_RUN_FRAME_TIMER_TARGET:Float = 5.0
+	
+	Field aniWaitFrame:Int = 0
+	Field aniWaitFrameTimer:Float = 0.0
+	Const ANI_WAIT_FRAME_TIMER_TARGET:Float = 30.0
+	
+	Field Status:Int
+	Field D:Int
+	Field MaxYS:Float
+	Field TargetXS:Float
+	
 	Method New(tLev:Level)
 		level = tLev
 	End
 	
 	Method Activate:Void()
 		Super.Activate()
+		Status = YetiStatusTypes.WATING_QUIET
 	End
 	
 	Method Update:Void()
+	
+		Super.Update()
 		
 		aniRunFrameTimer += 1.0 * LDApp.Delta
 		If aniRunFrameTimer >= ANI_RUN_FRAME_TIMER_TARGET
@@ -91,6 +96,19 @@ Class Yeti Extends Entity
 				aniWaitFrame = 0
 			EndIf
 		EndIf
+		
+		Select Status
+			Case YetiStatusTypes.CHASING
+				UpdateChasing()
+			Case YetiStatusTypes.DAZED
+				UpdateDazed()
+			Case YetiStatusTypes.EATING
+				UpdateEating()
+			Case YetiStatusTypes.WAITING_HAPPY
+				UpdateWaitingHappy()
+			Case YetiStatusTypes.WATING_QUIET
+				UpdateWaiting()
+		End
 	
 		If Not IsOnScreen()
 			Deactivate()
@@ -98,20 +116,194 @@ Class Yeti Extends Entity
 	
 	End
 	
-	Method Render:Void()
-		
-		If Controls.ActionDown
-			If Controls.LeftDown
-				GFX.Draw(gfxRunLeft, X, Y, aniRunFrame)
-			ElseIf Controls.RightDown
-				GFX.Draw(gfxRunRight, X, Y, aniRunFrame)
+	Method StartWaiting:Void()
+		Status = YetiStatusTypes.WATING_QUIET
+	End
+	
+	Method UpdateWaiting:Void()
+		If Controls.DownHit
+			StartChasing()
+		EndIf
+	End
+	
+	Method StartChasing:Void()
+		D = EntityMoveDirection.D
+		XS = 0
+		YS = 0.5
+		ZS = -1
+		Z = 0
+		Status = YetiStatusTypes.CHASING
+		SFX.Music("chase")
+	End
+	
+	Method UpdateChasing:Void()
+	
+		UpdateControlled()
+	
+		If onFloor
+			Select D
+				Case EntityMoveDirection.L
+					MaxYS = 0.0
+					TargetXS = 0.0
+				Case EntityMoveDirection.LLD
+					MaxYS = 1.0
+					TargetXS = -2.0
+				Case EntityMoveDirection.LDD
+					MaxYS = 2.0
+					TargetXS = -1.0
+				Case EntityMoveDirection.D
+					MaxYS = 3.0
+					TargetXS = 0.0
+				Case EntityMoveDirection.RDD
+					MaxYS = 2.0
+					TargetXS = 1.0
+				Case EntityMoveDirection.RRD
+					MaxYS = 1.0
+					TargetXS = 2.0
+				Case EntityMoveDirection.R
+					MaxYS = 0.0
+					TargetXS = 0.0
+			End
+			
+			If YS > MaxYS
+				YS *= (1.0 - (0.05 * LDApp.Delta))
 			Else
-				GFX.Draw(gfxRunFront, X, Y, aniRunFrame)
+				YS += (0.05 * LDApp.Delta)
 			EndIf
 			
+			If XS > TargetXS - (0.05 * LDApp.Delta) And XS < TargetXS + (0.05 * LDApp.Delta)
+				XS = TargetXS
+			ElseIf XS < TargetXS
+				XS += 0.05 * LDApp.Delta
+			ElseIf XS > TargetXS
+				XS -= 0.05 * LDApp.Delta
+			EndIf
 		Else
-			GFX.Draw(gfxStandFront, X, Y, aniWaitFrame)
+			ZS += (0.05 * LDApp.Delta)
+		End
+		
+		X += XS * LDApp.Delta
+		Y += YS * LDApp.Delta
+		Z += ZS * LDApp.Delta
+		
+		
+	End
+	
+	Method StartEating:Void()
+		
+	End
+	
+	Method UpdateEating:Void()
+		
+	End
+	
+	Method StartDazed:Void()
+		
+	End
+	
+	Method UpdateDazed:Void()
+		
+	End
+	
+	Method StartWaitingHappy:Void()
+		
+	End
+	
+	Method UpdateWaitingHappy:Void()
+		
+	End
+	
+	Method UpdateControlled:Void()
+		If Controls.LeftHit
+			If D > EntityMoveDirection.L
+				D -= 1
+			Else
+				If onFloor
+					XS = -0.2
+				EndIf
+			EndIf
+		EndIf
+		
+		If Controls.RightHit
+			If D < EntityMoveDirection.R
+				D += 1
+			Else
+				If onFloor
+					XS = 0.2
+				EndIf
+			EndIf
+		EndIf
+		
+		If Controls.DownHit
+			D = EntityMoveDirection.D
+		EndIf
+		
+		If Controls.UpHit
+			If onFloor
+				ZS = -1.5
+				XS *= 1.5
+				YS *= 1.5
+			EndIf
+		EndIf
+	End
+	
+	
+	Method Render:Void()
+		
+		Select Status
+			Case YetiStatusTypes.CHASING
+				RenderChasing()
+			Case YetiStatusTypes.DAZED
+				RenderDazed()
+			Case YetiStatusTypes.EATING
+				RenderEating()
+			Case YetiStatusTypes.WAITING_HAPPY
+				RenderWaitingHappy()
+			Case YetiStatusTypes.WATING_QUIET
+				RenderWaiting()
+			Case YetiStatusTypes.POST_DIVE
+		End
+		
+	End
+	
+	Method RenderWaiting:Void()
+		GFX.Draw(gfxStandFront, X, Y, aniWaitFrame)
+	End
+	
+	Method RenderChasing:Void()
+		Select D
+			Case EntityMoveDirection.L
+				GFX.Draw(gfxStandFront, X, Y + Z, aniWaitFrame)
+			Case EntityMoveDirection.LLD, EntityMoveDirection.LDD
+				GFX.Draw(gfxRunLeft, X, Y + Z, aniRunFrame)
+			Case EntityMoveDirection.D
+				GFX.Draw(gfxRunFront, X, Y + Z, aniRunFrame)
+			Case EntityMoveDirection.RDD, EntityMoveDirection.RRD
+				GFX.Draw(gfxRunRight, X, Y + Z, aniRunFrame)
+			Case EntityMoveDirection.R
+				GFX.Draw(gfxStandFront, X, Y + Z, aniWaitFrame)
 		End
 	End
+	
+	Method RenderEating:Void()
+		
+	End
+	
+	Method RenderDazed:Void()
+		
+	End
+	
+	Method RenderWaitingHappy:Void()
+		
+	End
 
+End
+
+Class YetiStatusTypes
+	Const WATING_QUIET:Int = 0
+	Const CHASING:Int =1
+	Const EATING:Int = 2
+	Const DAZED:Int = 3
+	Const WAITING_HAPPY:Int = 4
+	Const POST_DIVE:Int = 5
 End

@@ -70,6 +70,20 @@
 	   </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="monkey\mus\ambient.mp3">
+      <Name>ambient.mp3</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+	   </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="monkey\mus\chase.mp3">
+      <Name>chase.mp3</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+	   </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="monkey\txt\wait.txt">
       <Name>wait.txt</Name>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

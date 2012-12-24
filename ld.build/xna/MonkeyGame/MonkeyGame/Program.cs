@@ -2128,27 +2128,31 @@ class bb__LDApp : bb_app_App{
 		bb_raztext_RazText.g_SetTextSheet(bb_graphics.bb_graphics_LoadImage("gfx/fonts.png",1,bb_graphics_Image.g_DefaultFlags));
 		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<93>";
 		bb_screenmanager_ScreenManager.g_AddScreen("game",((new bb_gamescreen_GameScreen()).g_GameScreen_new()));
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<103>";
-		bb_screenmanager_ScreenManager.g_SetFadeColour(0.0f,0.0f,0.0f);
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<104>";
-		bb_screenmanager_ScreenManager.g_SetFadeRate(0.1f);
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<101>";
+		bb_sfx_SFX.g_AddMusic("ambient","ambient.mp3");
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<102>";
+		bb_sfx_SFX.g_AddMusic("chase","chase.mp3");
 		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<105>";
-		bb_screenmanager_ScreenManager.g_SetScreen("game");
+		bb_screenmanager_ScreenManager.g_SetFadeColour(0.0f,0.0f,0.0f);
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<106>";
+		bb_screenmanager_ScreenManager.g_SetFadeRate(0.1f);
 		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<107>";
+		bb_screenmanager_ScreenManager.g_SetScreen("game");
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<109>";
 		if(bb_controls_Controls.g_ControlMethod==2){
-			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<108>";
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<110>";
 			g_RefreshRate=30;
 		}else{
-			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<110>";
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<112>";
 			g_RefreshRate=60;
 		}
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<113>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<115>";
 		bb_app.bb_app_SetUpdateRate(g_RefreshRate);
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<114>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<116>";
 		g_Delta=(float)(g_RefreshRate)/60.0f;
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<117>";
-		bb_autofit.bb_autofit_SetVirtualDisplay(g_ScreenWidth,g_ScreenHeight,1.0f);
 		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<119>";
+		bb_autofit.bb_autofit_SetVirtualDisplay(g_ScreenWidth,g_ScreenHeight,1.0f);
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<121>";
 		bb_std_lang.popErr();
 		return 0;
 	}
@@ -2161,31 +2165,31 @@ class bb__LDApp : bb_app_App{
 	public static int g_ScreenY;
 	public override int m_OnUpdate(){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<124>";
-		bb_controls_Controls.g_Update();
 		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<126>";
+		bb_controls_Controls.g_Update();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<128>";
 		g_ActualScreenX=(int)((float)(g_ActualScreenX)+(g_TargetScreenX-(float)(g_ActualScreenX))*g_ScreenMoveRate);
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<127>";
-		g_ActualScreenY=(int)((float)(g_ActualScreenY)+(g_TargetScreenY-(float)(g_ActualScreenY))*g_ScreenMoveRate);
 		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<129>";
+		g_ActualScreenY=(int)((float)(g_ActualScreenY)+(g_TargetScreenY-(float)(g_ActualScreenY))*g_ScreenMoveRate);
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<131>";
 		g_ScreenX=g_ActualScreenX;
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<130>";
-		g_ScreenY=g_ActualScreenY;
 		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<132>";
+		g_ScreenY=g_ActualScreenY;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<134>";
 		bb_screenmanager_ScreenManager.g_Update();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<133>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<135>";
 		bb_std_lang.popErr();
 		return 0;
 	}
 	public override int m_OnRender(){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<138>";
-		bb_autofit.bb_autofit_UpdateVirtualDisplay(true,true);
 		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<140>";
-		bb_graphics.bb_graphics_Cls(0.0f,0.0f,0.0f);
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<141>";
-		bb_screenmanager_ScreenManager.g_Render();
+		bb_autofit.bb_autofit_UpdateVirtualDisplay(true,true);
 		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<142>";
+		bb_graphics.bb_graphics_Cls(0.0f,0.0f,0.0f);
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<143>";
+		bb_screenmanager_ScreenManager.g_Render();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<144>";
 		bb_std_lang.popErr();
 		return 0;
 	}
@@ -2996,6 +3000,35 @@ class bb_sfx_SFX : Object{
 		g_Musics=(new bb_map_StringMap3()).g_StringMap_new();
 		bb_std_lang.popErr();
 	}
+	public static void g_AddMusic(String t_tName,String t_tFile){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/framework/sfx.monkey<50>";
+		g_Musics.m_Set2(t_tName,t_tFile);
+		bb_std_lang.popErr();
+	}
+	public static bool g_MusicActive;
+	public static String g_CurrentMusic;
+	public static void g_Music(String t_tMus,int t_tLoop){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/framework/sfx.monkey<83>";
+		if(g_MusicActive==false){
+			bb_std_lang.popErr();
+			return;
+		}
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/framework/sfx.monkey<87>";
+		if(!g_Musics.m_Contains(t_tMus)){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/framework/sfx.monkey<88>";
+			bb_std_lang.Error("Music "+t_tMus+" does not appear to exist");
+		}
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/framework/sfx.monkey<91>";
+		if((t_tMus.CompareTo(g_CurrentMusic)!=0) || (bb_audio.bb_audio_MusicState()==-1 || bb_audio.bb_audio_MusicState()==0)){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/framework/sfx.monkey<92>";
+			bb_audio.bb_audio_PlayMusic("mus/"+g_Musics.m_Get(t_tMus),t_tLoop);
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/framework/sfx.monkey<93>";
+			g_CurrentMusic=t_tMus;
+		}
+		bb_std_lang.popErr();
+	}
 }
 class bb_audio_Sound : Object{
 }
@@ -3024,6 +3057,246 @@ abstract class bb_map_Map3 : Object{
 		bb_std_lang.popErr();
 		return this;
 	}
+	public bb_map_Node2 f_root=null;
+	public abstract int m_Compare(String t_lhs,String t_rhs);
+	public virtual int m_RotateLeft2(bb_map_Node2 t_node){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<251>";
+		bb_map_Node2 t_child=t_node.f_right;
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<252>";
+		t_node.f_right=t_child.f_left;
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<253>";
+		if((t_child.f_left)!=null){
+			bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<254>";
+			t_child.f_left.f_parent=t_node;
+		}
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<256>";
+		t_child.f_parent=t_node.f_parent;
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<257>";
+		if((t_node.f_parent)!=null){
+			bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<258>";
+			if(t_node==t_node.f_parent.f_left){
+				bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<259>";
+				t_node.f_parent.f_left=t_child;
+			}else{
+				bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<261>";
+				t_node.f_parent.f_right=t_child;
+			}
+		}else{
+			bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<264>";
+			f_root=t_child;
+		}
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<266>";
+		t_child.f_left=t_node;
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<267>";
+		t_node.f_parent=t_child;
+		bb_std_lang.popErr();
+		return 0;
+	}
+	public virtual int m_RotateRight2(bb_map_Node2 t_node){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<271>";
+		bb_map_Node2 t_child=t_node.f_left;
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<272>";
+		t_node.f_left=t_child.f_right;
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<273>";
+		if((t_child.f_right)!=null){
+			bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<274>";
+			t_child.f_right.f_parent=t_node;
+		}
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<276>";
+		t_child.f_parent=t_node.f_parent;
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<277>";
+		if((t_node.f_parent)!=null){
+			bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<278>";
+			if(t_node==t_node.f_parent.f_right){
+				bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<279>";
+				t_node.f_parent.f_right=t_child;
+			}else{
+				bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<281>";
+				t_node.f_parent.f_left=t_child;
+			}
+		}else{
+			bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<284>";
+			f_root=t_child;
+		}
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<286>";
+		t_child.f_right=t_node;
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<287>";
+		t_node.f_parent=t_child;
+		bb_std_lang.popErr();
+		return 0;
+	}
+	public virtual int m_InsertFixup2(bb_map_Node2 t_node){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<212>";
+		while(((t_node.f_parent)!=null) && t_node.f_parent.f_color==-1 && ((t_node.f_parent.f_parent)!=null)){
+			bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<213>";
+			if(t_node.f_parent==t_node.f_parent.f_parent.f_left){
+				bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<214>";
+				bb_map_Node2 t_uncle=t_node.f_parent.f_parent.f_right;
+				bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<215>";
+				if(((t_uncle)!=null) && t_uncle.f_color==-1){
+					bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<216>";
+					t_node.f_parent.f_color=1;
+					bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<217>";
+					t_uncle.f_color=1;
+					bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<218>";
+					t_uncle.f_parent.f_color=-1;
+					bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<219>";
+					t_node=t_uncle.f_parent;
+				}else{
+					bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<221>";
+					if(t_node==t_node.f_parent.f_right){
+						bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<222>";
+						t_node=t_node.f_parent;
+						bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<223>";
+						m_RotateLeft2(t_node);
+					}
+					bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<225>";
+					t_node.f_parent.f_color=1;
+					bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<226>";
+					t_node.f_parent.f_parent.f_color=-1;
+					bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<227>";
+					m_RotateRight2(t_node.f_parent.f_parent);
+				}
+			}else{
+				bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<230>";
+				bb_map_Node2 t_uncle2=t_node.f_parent.f_parent.f_left;
+				bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<231>";
+				if(((t_uncle2)!=null) && t_uncle2.f_color==-1){
+					bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<232>";
+					t_node.f_parent.f_color=1;
+					bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<233>";
+					t_uncle2.f_color=1;
+					bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<234>";
+					t_uncle2.f_parent.f_color=-1;
+					bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<235>";
+					t_node=t_uncle2.f_parent;
+				}else{
+					bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<237>";
+					if(t_node==t_node.f_parent.f_left){
+						bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<238>";
+						t_node=t_node.f_parent;
+						bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<239>";
+						m_RotateRight2(t_node);
+					}
+					bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<241>";
+					t_node.f_parent.f_color=1;
+					bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<242>";
+					t_node.f_parent.f_parent.f_color=-1;
+					bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<243>";
+					m_RotateLeft2(t_node.f_parent.f_parent);
+				}
+			}
+		}
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<247>";
+		f_root.f_color=1;
+		bb_std_lang.popErr();
+		return 0;
+	}
+	public virtual bool m_Set2(String t_key,String t_value){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<29>";
+		bb_map_Node2 t_node=f_root;
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<30>";
+		bb_map_Node2 t_parent=null;
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<30>";
+		int t_cmp=0;
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<32>";
+		while((t_node)!=null){
+			bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<33>";
+			t_parent=t_node;
+			bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<34>";
+			t_cmp=m_Compare(t_key,t_node.f_key);
+			bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<35>";
+			if(t_cmp>0){
+				bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<36>";
+				t_node=t_node.f_right;
+			}else{
+				bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<37>";
+				if(t_cmp<0){
+					bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<38>";
+					t_node=t_node.f_left;
+				}else{
+					bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<40>";
+					t_node.f_value=t_value;
+					bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<41>";
+					bb_std_lang.popErr();
+					return false;
+				}
+			}
+		}
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<45>";
+		t_node=(new bb_map_Node2()).g_Node_new(t_key,t_value,-1,t_parent);
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<47>";
+		if((t_parent)!=null){
+			bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<48>";
+			if(t_cmp>0){
+				bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<49>";
+				t_parent.f_right=t_node;
+			}else{
+				bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<51>";
+				t_parent.f_left=t_node;
+			}
+			bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<53>";
+			m_InsertFixup2(t_node);
+		}else{
+			bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<55>";
+			f_root=t_node;
+		}
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<57>";
+		bb_std_lang.popErr();
+		return true;
+	}
+	public virtual bb_map_Node2 m_FindNode(String t_key){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<157>";
+		bb_map_Node2 t_node=f_root;
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<159>";
+		while((t_node)!=null){
+			bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<160>";
+			int t_cmp=m_Compare(t_key,t_node.f_key);
+			bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<161>";
+			if(t_cmp>0){
+				bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<162>";
+				t_node=t_node.f_right;
+			}else{
+				bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<163>";
+				if(t_cmp<0){
+					bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<164>";
+					t_node=t_node.f_left;
+				}else{
+					bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<166>";
+					bb_std_lang.popErr();
+					return t_node;
+				}
+			}
+		}
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<169>";
+		bb_std_lang.popErr();
+		return t_node;
+	}
+	public virtual bool m_Contains(String t_key){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<25>";
+		bool t_=m_FindNode(t_key)!=null;
+		bb_std_lang.popErr();
+		return t_;
+	}
+	public virtual String m_Get(String t_key){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<101>";
+		bb_map_Node2 t_node=m_FindNode(t_key);
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<102>";
+		if((t_node)!=null){
+			bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<102>";
+			bb_std_lang.popErr();
+			return t_node.f_value;
+		}
+		bb_std_lang.popErr();
+		return "";
+	}
 }
 class bb_map_StringMap3 : bb_map_Map3{
 	public virtual bb_map_StringMap3 g_StringMap_new(){
@@ -3033,6 +3306,13 @@ class bb_map_StringMap3 : bb_map_Map3{
 		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<551>";
 		bb_std_lang.popErr();
 		return this;
+	}
+	public override int m_Compare(String t_lhs,String t_rhs){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<554>";
+		int t_=t_lhs.CompareTo(t_rhs);
+		bb_std_lang.popErr();
+		return t_;
 	}
 }
 class bb_controls_Controls : Object{
@@ -4416,6 +4696,33 @@ class bb_map_Node : Object{
 		return this;
 	}
 }
+class bb_map_Node2 : Object{
+	public String f_key="";
+	public bb_map_Node2 f_right=null;
+	public bb_map_Node2 f_left=null;
+	public String f_value="";
+	public int f_color=0;
+	public bb_map_Node2 f_parent=null;
+	public virtual bb_map_Node2 g_Node_new(String t_key,String t_value,int t_color,bb_map_Node2 t_parent){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<364>";
+		this.f_key=t_key;
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<365>";
+		this.f_value=t_value;
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<366>";
+		this.f_color=t_color;
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<367>";
+		this.f_parent=t_parent;
+		bb_std_lang.popErr();
+		return this;
+	}
+	public virtual bb_map_Node2 g_Node_new2(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/map.monkey<361>";
+		bb_std_lang.popErr();
+		return this;
+	}
+}
 class bb_controls_ControlMethodTypes : Object{
 }
 class bb_autofit_VirtualDisplay : Object{
@@ -4689,41 +4996,77 @@ class bb_level_Level : Object{
 		bb_dog_Dog.g_Init(bb__LDApp.g_level);
 		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<12>";
 		bb_yeti_Yeti.g_Init(bb__LDApp.g_level);
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<14>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<13>";
+		bb_skier_Skier.g_Init(bb__LDApp.g_level);
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<15>";
 		f_controlledYeti=bb_yeti_Yeti.g_Create(0.0f,0.0f);
 		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<16>";
-		bb_dog_Dog.g_Create(50.0f,50.0f);
+		bb_yeti_Yeti.g_a[f_controlledYeti].m_StartWaiting();
 		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<18>";
-		bb__LDApp.g_SetScreenPosition(bb_yeti_Yeti.g_a[f_controlledYeti].f_X,bb_yeti_Yeti.g_a[f_controlledYeti].f_Y);
+		bb_dog_Dog.g_Create(50.0f,50.0f);
 		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<20>";
-		f_txtWait=(new bb_raztext_RazText()).g_RazText_new();
+		int t_firstSkier=bb_skier_Skier.g_Create(50.0f,-70.0f);
 		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<21>";
-		f_txtWait.m_AddMutliLines(bb_app.bb_app_LoadString("txt/wait.txt").Replace("\n",""));
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<22>";
-		f_txtWait.m_SetPos(96,320);
+		bb_skier_Skier.g_a[t_firstSkier].m_StartTeasing();
 		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<23>";
+		bb__LDApp.g_SetScreenPosition(bb_yeti_Yeti.g_a[f_controlledYeti].f_X,bb_yeti_Yeti.g_a[f_controlledYeti].f_Y);
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<25>";
+		f_txtWait=(new bb_raztext_RazText()).g_RazText_new();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<26>";
+		f_txtWait.m_AddMutliLines(bb_app.bb_app_LoadString("txt/wait.txt").Replace("\n",""));
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<27>";
+		f_txtWait.m_SetPos(96,320);
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<28>";
 		f_txtWait.m_SetSpacing(-3,-1);
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<30>";
+		bb_sfx_SFX.g_Music("ambient",1);
 		bb_std_lang.popErr();
 		return this;
 	}
 	public virtual void m_Update(){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<28>";
-		bb__LDApp.g_SetScreenTarget(bb_yeti_Yeti.g_a[f_controlledYeti].f_X,bb_yeti_Yeti.g_a[f_controlledYeti].f_Y);
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<30>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<35>";
+		bb__LDApp.g_SetScreenTarget(bb_yeti_Yeti.g_a[f_controlledYeti].f_X,bb_yeti_Yeti.g_a[f_controlledYeti].f_Y+(float)(bb__LDApp.g_ScreenHeight)*0.25f);
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<37>";
 		bb_dog_Dog.g_UpdateAll();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<31>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<38>";
 		bb_yeti_Yeti.g_UpdateAll();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<39>";
+		bb_skier_Skier.g_UpdateAll();
+		bb_std_lang.popErr();
+	}
+	public virtual void m_RenderGui(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<69>";
+		bb_graphics.bb_graphics_SetColor(255.0f,255.0f,255.0f);
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<70>";
+		bb_graphics.bb_graphics_SetAlpha(1.0f);
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<71>";
+		bb_graphics.bb_graphics_DrawImageRect(bb_gfx_GFX.g_Tileset,0.0f,0.0f,504,0,8,360,0);
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<72>";
+		bb_graphics.bb_graphics_DrawImageRect(bb_gfx_GFX.g_Tileset,6.0f,bb_yeti_Yeti.g_a[f_controlledYeti].f_Y/50.0f,464,0,10,10,0);
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<73>";
+		for(int t_i=0;t_i<20;t_i=t_i+1){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<74>";
+			if(bb_skier_Skier.g_a[t_i].f_Active==true){
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<75>";
+				bb_graphics.bb_graphics_DrawImageRect(bb_gfx_GFX.g_Tileset,6.0f,bb_skier_Skier.g_a[t_i].f_Y/50.0f,480,0,10,10,0);
+			}
+		}
 		bb_std_lang.popErr();
 	}
 	public virtual void m_Render(){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<36>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<44>";
 		bb_dog_Dog.g_RenderAll();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<37>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<45>";
 		bb_yeti_Yeti.g_RenderAll();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<38>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<46>";
+		bb_skier_Skier.g_RenderAll();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<47>";
 		f_txtWait.m_Draw2();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/level.monkey<49>";
+		m_RenderGui();
 		bb_std_lang.popErr();
 	}
 }
@@ -4733,11 +5076,11 @@ class bb_entity_Entity : Object{
 	public float f_H=.0f;
 	public virtual bb_entity_Entity g_Entity_new(bb_level_Level t_tLev){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/entity.monkey<20>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/entity.monkey<24>";
 		f_level=t_tLev;
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/entity.monkey<21>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/entity.monkey<25>";
 		f_W=16.0f;
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/entity.monkey<22>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/entity.monkey<26>";
 		f_H=16.0f;
 		bb_std_lang.popErr();
 		return this;
@@ -4751,7 +5094,7 @@ class bb_entity_Entity : Object{
 	public bool f_Active=false;
 	public virtual void m_Activate(){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/entity.monkey<39>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/entity.monkey<48>";
 		f_Active=true;
 		bb_std_lang.popErr();
 	}
@@ -4759,29 +5102,44 @@ class bb_entity_Entity : Object{
 	public float f_Y=.0f;
 	public virtual void m_SetPosition(float t_tX,float t_tY){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/entity.monkey<26>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/entity.monkey<30>";
 		f_X=t_tX;
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/entity.monkey<27>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/entity.monkey<31>";
 		f_Y=t_tY;
 		bb_std_lang.popErr();
 	}
+	public float f_XS=.0f;
+	public float f_YS=.0f;
+	public float f_Z=.0f;
+	public bool f_onFloor=false;
 	public virtual void m_Update(){
 		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/entity.monkey<35>";
+		if(f_Z>=0.0f){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/entity.monkey<36>";
+			f_onFloor=true;
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/entity.monkey<37>";
+			f_Z=0.0f;
+		}else{
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/entity.monkey<39>";
+			f_onFloor=false;
+		}
 		bb_std_lang.popErr();
 	}
 	public virtual bool m_IsOnScreen(){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/entity.monkey<47>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/entity.monkey<56>";
 		bool t_=bb_functions.bb_functions_RectOverRect(f_X,f_Y,f_W,f_H,(float)(bb__LDApp.g_ScreenX-50),(float)(bb__LDApp.g_ScreenY-50),(float)(bb__LDApp.g_ScreenWidth+100),(float)(bb__LDApp.g_ScreenHeight+100));
 		bb_std_lang.popErr();
 		return t_;
 	}
 	public virtual void m_Deactivate(){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/entity.monkey<43>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/entity.monkey<52>";
 		f_Active=false;
 		bb_std_lang.popErr();
 	}
+	public float f_ZS=.0f;
 	public virtual void m_Render(){
 		bb_std_lang.pushErr();
 		bb_std_lang.popErr();
@@ -4893,9 +5251,9 @@ class bb_yeti_Yeti : bb_entity_Entity{
 	public static bb_yeti_Yeti[] g_a;
 	public virtual bb_yeti_Yeti g_Yeti_new(bb_level_Level t_tLev){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<67>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<69>";
 		base.g_Entity_new2();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<68>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<70>";
 		f_level=t_tLev;
 		bb_std_lang.popErr();
 		return this;
@@ -4914,139 +5272,838 @@ class bb_yeti_Yeti : bb_entity_Entity{
 	public static bb_graphics_Image g_gfxRunRight;
 	public static void g_Init(bb_level_Level t_tLev){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<26>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<15>";
 		g_a=new bb_yeti_Yeti[1];
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<27>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<16>";
 		for(int t_i=0;t_i<1;t_i=t_i+1){
-			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<28>";
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<17>";
 			g_a[t_i]=(new bb_yeti_Yeti()).g_Yeti_new(t_tLev);
 		}
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<31>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<20>";
 		g_gfxStandFront=bb_gfx_GFX.g_Tileset.m_GrabImage(48,0,22,32,2,1);
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<32>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<21>";
 		g_gfxRunFront=bb_gfx_GFX.g_Tileset.m_GrabImage(48,32,22,32,2,1);
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<33>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<22>";
 		g_gfxRunLeft=bb_gfx_GFX.g_Tileset.m_GrabImage(48,64,22,32,2,1);
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<34>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<23>";
 		g_gfxRunRight=bb_gfx_GFX.g_Tileset.m_GrabImage(48,96,22,32,2,1);
 		bb_std_lang.popErr();
 	}
 	public static int g_NextYeti;
+	public int f_Status=0;
 	public override void m_Activate(){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<72>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<74>";
 		base.m_Activate();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<75>";
+		f_Status=0;
 		bb_std_lang.popErr();
 	}
 	public static int g_Create(float t_tX,float t_tY){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<58>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<47>";
 		int t_thisYeti=g_NextYeti;
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<59>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<48>";
 		g_a[t_thisYeti].m_Activate();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<60>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<49>";
 		g_NextYeti+=1;
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<61>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<50>";
 		if(g_NextYeti==1){
-			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<62>";
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<51>";
 			g_NextYeti=0;
 		}
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<64>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<53>";
 		bb_std_lang.popErr();
 		return t_thisYeti;
+	}
+	public virtual void m_StartWaiting(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<120>";
+		f_Status=0;
+		bb_std_lang.popErr();
 	}
 	public float f_aniRunFrameTimer=0.0f;
 	public int f_aniRunFrame=0;
 	public float f_aniWaitFrameTimer=0.0f;
 	public int f_aniWaitFrame=0;
+	public int f_D=0;
+	public virtual void m_UpdateControlled(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<217>";
+		if(bb_controls_Controls.g_LeftHit){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<218>";
+			if(f_D>0){
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<219>";
+				f_D-=1;
+			}else{
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<221>";
+				if(f_onFloor){
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<222>";
+					f_XS=-0.2f;
+				}
+			}
+		}
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<227>";
+		if(bb_controls_Controls.g_RightHit){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<228>";
+			if(f_D<6){
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<229>";
+				f_D+=1;
+			}else{
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<231>";
+				if(f_onFloor){
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<232>";
+					f_XS=0.2f;
+				}
+			}
+		}
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<237>";
+		if(bb_controls_Controls.g_DownHit){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<238>";
+			f_D=3;
+		}
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<241>";
+		if(bb_controls_Controls.g_UpHit){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<242>";
+			if(f_onFloor){
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<243>";
+				f_ZS=-1.5f;
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<244>";
+				f_XS*=1.5f;
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<245>";
+				f_YS*=1.5f;
+			}
+		}
+		bb_std_lang.popErr();
+	}
+	public float f_MaxYS=.0f;
+	public float f_TargetXS=.0f;
+	public virtual void m_UpdateChasing(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<141>";
+		m_UpdateControlled();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<143>";
+		if(f_onFloor){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<144>";
+			int t_=f_D;
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<145>";
+			if(t_==0){
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<146>";
+				f_MaxYS=0.0f;
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<147>";
+				f_TargetXS=0.0f;
+			}else{
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<148>";
+				if(t_==1){
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<149>";
+					f_MaxYS=1.0f;
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<150>";
+					f_TargetXS=-2.0f;
+				}else{
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<151>";
+					if(t_==2){
+						bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<152>";
+						f_MaxYS=2.0f;
+						bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<153>";
+						f_TargetXS=-1.0f;
+					}else{
+						bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<154>";
+						if(t_==3){
+							bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<155>";
+							f_MaxYS=3.0f;
+							bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<156>";
+							f_TargetXS=0.0f;
+						}else{
+							bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<157>";
+							if(t_==4){
+								bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<158>";
+								f_MaxYS=2.0f;
+								bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<159>";
+								f_TargetXS=1.0f;
+							}else{
+								bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<160>";
+								if(t_==5){
+									bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<161>";
+									f_MaxYS=1.0f;
+									bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<162>";
+									f_TargetXS=2.0f;
+								}else{
+									bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<163>";
+									if(t_==6){
+										bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<164>";
+										f_MaxYS=0.0f;
+										bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<165>";
+										f_TargetXS=0.0f;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<168>";
+			if(f_YS>f_MaxYS){
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<169>";
+				f_YS*=1.0f-0.05f*bb__LDApp.g_Delta;
+			}else{
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<171>";
+				f_YS+=0.05f*bb__LDApp.g_Delta;
+			}
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<174>";
+			if(f_XS>f_TargetXS-0.05f*bb__LDApp.g_Delta && f_XS<f_TargetXS+0.05f*bb__LDApp.g_Delta){
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<175>";
+				f_XS=f_TargetXS;
+			}else{
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<176>";
+				if(f_XS<f_TargetXS){
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<177>";
+					f_XS+=0.05f*bb__LDApp.g_Delta;
+				}else{
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<178>";
+					if(f_XS>f_TargetXS){
+						bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<179>";
+						f_XS-=0.05f*bb__LDApp.g_Delta;
+					}
+				}
+			}
+		}else{
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<182>";
+			f_ZS+=0.05f*bb__LDApp.g_Delta;
+		}
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<185>";
+		f_X+=f_XS*bb__LDApp.g_Delta;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<186>";
+		f_Y+=f_YS*bb__LDApp.g_Delta;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<187>";
+		f_Z+=f_ZS*bb__LDApp.g_Delta;
+		bb_std_lang.popErr();
+	}
+	public virtual void m_UpdateDazed(){
+		bb_std_lang.pushErr();
+		bb_std_lang.popErr();
+	}
+	public virtual void m_UpdateEating(){
+		bb_std_lang.pushErr();
+		bb_std_lang.popErr();
+	}
+	public virtual void m_UpdateWaitingHappy(){
+		bb_std_lang.pushErr();
+		bb_std_lang.popErr();
+	}
+	public virtual void m_StartChasing(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<130>";
+		f_D=3;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<131>";
+		f_XS=0.0f;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<132>";
+		f_YS=0.5f;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<133>";
+		f_ZS=-1.0f;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<134>";
+		f_Z=0.0f;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<135>";
+		f_Status=1;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<136>";
+		bb_sfx_SFX.g_Music("chase",1);
+		bb_std_lang.popErr();
+	}
+	public virtual void m_UpdateWaiting(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<124>";
+		if(bb_controls_Controls.g_DownHit){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<125>";
+			m_StartChasing();
+		}
+		bb_std_lang.popErr();
+	}
 	public override void m_Update(){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<77>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<80>";
+		base.m_Update();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<82>";
 		f_aniRunFrameTimer+=1.0f*bb__LDApp.g_Delta;
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<78>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<83>";
 		if(f_aniRunFrameTimer>=5.0f){
-			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<79>";
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<84>";
 			f_aniRunFrameTimer=0.0f;
-			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<80>";
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<85>";
 			f_aniRunFrame+=1;
-			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<81>";
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<86>";
 			if(f_aniRunFrame>=2){
-				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<82>";
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<87>";
 				f_aniRunFrame=0;
 			}
 		}
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<86>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<91>";
 		f_aniWaitFrameTimer+=1.0f*bb__LDApp.g_Delta;
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<87>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<92>";
 		if(f_aniWaitFrameTimer>=30.0f){
-			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<88>";
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<93>";
 			f_aniWaitFrameTimer=0.0f;
-			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<89>";
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<94>";
 			f_aniWaitFrame+=1;
-			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<90>";
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<95>";
 			if(f_aniWaitFrame>=2){
-				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<91>";
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<96>";
 				f_aniWaitFrame=0;
 			}
 		}
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<95>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<100>";
+		int t_=f_Status;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<101>";
+		if(t_==1){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<102>";
+			m_UpdateChasing();
+		}else{
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<103>";
+			if(t_==3){
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<104>";
+				m_UpdateDazed();
+			}else{
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<105>";
+				if(t_==2){
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<106>";
+					m_UpdateEating();
+				}else{
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<107>";
+					if(t_==4){
+						bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<108>";
+						m_UpdateWaitingHappy();
+					}else{
+						bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<109>";
+						if(t_==0){
+							bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<110>";
+							m_UpdateWaiting();
+						}
+					}
+				}
+			}
+		}
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<113>";
 		if(!m_IsOnScreen()){
-			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<96>";
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<114>";
 			m_Deactivate();
 		}
 		bb_std_lang.popErr();
 	}
 	public static void g_UpdateAll(){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<39>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<28>";
 		for(int t_i=0;t_i<1;t_i=t_i+1){
-			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<40>";
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<29>";
 			if(g_a[t_i].f_Active==true){
-				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<41>";
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<30>";
 				g_a[t_i].m_Update();
 			}
 		}
 		bb_std_lang.popErr();
 	}
-	public override void m_Render(){
+	public virtual void m_RenderChasing(){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<103>";
-		if(bb_controls_Controls.g_ActionDown){
-			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<104>";
-			if(bb_controls_Controls.g_LeftDown){
-				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<105>";
-				bb_gfx_GFX.g_Draw(g_gfxRunLeft,f_X,f_Y,f_aniRunFrame,true);
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<274>";
+		int t_=f_D;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<275>";
+		if(t_==0){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<276>";
+			bb_gfx_GFX.g_Draw(g_gfxStandFront,f_X,f_Y+f_Z,f_aniWaitFrame,true);
+		}else{
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<277>";
+			if(t_==1 || t_==2){
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<278>";
+				bb_gfx_GFX.g_Draw(g_gfxRunLeft,f_X,f_Y+f_Z,f_aniRunFrame,true);
 			}else{
-				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<106>";
-				if(bb_controls_Controls.g_RightDown){
-					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<107>";
-					bb_gfx_GFX.g_Draw(g_gfxRunRight,f_X,f_Y,f_aniRunFrame,true);
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<279>";
+				if(t_==3){
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<280>";
+					bb_gfx_GFX.g_Draw(g_gfxRunFront,f_X,f_Y+f_Z,f_aniRunFrame,true);
 				}else{
-					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<109>";
-					bb_gfx_GFX.g_Draw(g_gfxRunFront,f_X,f_Y,f_aniRunFrame,true);
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<281>";
+					if(t_==4 || t_==5){
+						bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<282>";
+						bb_gfx_GFX.g_Draw(g_gfxRunRight,f_X,f_Y+f_Z,f_aniRunFrame,true);
+					}else{
+						bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<283>";
+						if(t_==6){
+							bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<284>";
+							bb_gfx_GFX.g_Draw(g_gfxStandFront,f_X,f_Y+f_Z,f_aniWaitFrame,true);
+						}
+					}
 				}
 			}
+		}
+		bb_std_lang.popErr();
+	}
+	public virtual void m_RenderDazed(){
+		bb_std_lang.pushErr();
+		bb_std_lang.popErr();
+	}
+	public virtual void m_RenderEating(){
+		bb_std_lang.pushErr();
+		bb_std_lang.popErr();
+	}
+	public virtual void m_RenderWaitingHappy(){
+		bb_std_lang.pushErr();
+		bb_std_lang.popErr();
+	}
+	public virtual void m_RenderWaiting(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<270>";
+		bb_gfx_GFX.g_Draw(g_gfxStandFront,f_X,f_Y,f_aniWaitFrame,true);
+		bb_std_lang.popErr();
+	}
+	public override void m_Render(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<253>";
+		int t_=f_Status;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<254>";
+		if(t_==1){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<255>";
+			m_RenderChasing();
 		}else{
-			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<113>";
-			bb_gfx_GFX.g_Draw(g_gfxStandFront,f_X,f_Y,f_aniWaitFrame,true);
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<256>";
+			if(t_==3){
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<257>";
+				m_RenderDazed();
+			}else{
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<258>";
+				if(t_==2){
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<259>";
+					m_RenderEating();
+				}else{
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<260>";
+					if(t_==4){
+						bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<261>";
+						m_RenderWaitingHappy();
+					}else{
+						bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<262>";
+						if(t_==0){
+							bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<263>";
+							m_RenderWaiting();
+						}else{
+							bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<264>";
+							if(t_==5){
+							}
+						}
+					}
+				}
+			}
 		}
 		bb_std_lang.popErr();
 	}
 	public static void g_RenderAll(){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<47>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<36>";
 		for(int t_i=0;t_i<1;t_i=t_i+1){
-			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<48>";
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<37>";
 			if(g_a[t_i].f_Active==true){
-				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<49>";
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<38>";
 				if(g_a[t_i].m_IsOnScreen()){
-					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<50>";
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/yeti.monkey<39>";
 					g_a[t_i].m_Render();
 				}
 			}
 		}
 		bb_std_lang.popErr();
 	}
+}
+class bb_skier_Skier : bb_entity_Entity{
+	public static bb_skier_Skier[] g_a;
+	public virtual bb_skier_Skier g_Skier_new(bb_level_Level t_tLev){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<81>";
+		base.g_Entity_new2();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<82>";
+		f_level=t_tLev;
+		bb_std_lang.popErr();
+		return this;
+	}
+	public virtual bb_skier_Skier g_Skier_new2(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<3>";
+		base.g_Entity_new2();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<3>";
+		bb_std_lang.popErr();
+		return this;
+	}
+	public static bb_graphics_Image g_gfxSkiL;
+	public static bb_graphics_Image g_gfxSkiLLD;
+	public static bb_graphics_Image g_gfxSkiLDD;
+	public static bb_graphics_Image g_gfxSkiD;
+	public static bb_graphics_Image g_gfxSkiRDD;
+	public static bb_graphics_Image g_gfxSkiRRD;
+	public static bb_graphics_Image g_gfxSkiR;
+	public static void g_Init(bb_level_Level t_tLev){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<20>";
+		g_a=new bb_skier_Skier[20];
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<21>";
+		for(int t_i=0;t_i<20;t_i=t_i+1){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<22>";
+			g_a[t_i]=(new bb_skier_Skier()).g_Skier_new(t_tLev);
+		}
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<25>";
+		g_gfxSkiL=bb_gfx_GFX.g_Tileset.m_GrabImage(70,128,22,32,1,1);
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<26>";
+		g_gfxSkiLLD=g_gfxSkiL;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<27>";
+		g_gfxSkiLDD=g_gfxSkiL;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<28>";
+		g_gfxSkiD=g_gfxSkiL;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<29>";
+		g_gfxSkiRDD=g_gfxSkiL;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<30>";
+		g_gfxSkiRRD=g_gfxSkiL;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<31>";
+		g_gfxSkiR=g_gfxSkiL;
+		bb_std_lang.popErr();
+	}
+	public static int g_NextSkier;
+	public int f_TargetYeti=0;
+	public override void m_Activate(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<242>";
+		base.m_Activate();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<243>";
+		f_TargetYeti=-1;
+		bb_std_lang.popErr();
+	}
+	public static int g_Create(float t_tX,float t_tY){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<58>";
+		int t_tI=g_NextSkier;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<59>";
+		g_a[t_tI].m_Activate();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<60>";
+		g_a[t_tI].m_SetPosition(t_tX,t_tY);
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<62>";
+		g_NextSkier+=1;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<63>";
+		if(g_NextSkier>=20){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<64>";
+			g_NextSkier=0;
+		}
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<67>";
+		bb_std_lang.popErr();
+		return t_tI;
+	}
+	public int f_Status=0;
+	public int f_D=0;
+	public virtual int m_FindNearestYeti(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<247>";
+		int t_nIndex=-1;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<248>";
+		float t_nDistance=99999999.0f;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<250>";
+		for(int t_i=0;t_i<1;t_i=t_i+1){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<251>";
+			if(bb_yeti_Yeti.g_a[t_i].f_Active==true){
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<252>";
+				if(bb_yeti_Yeti.g_a[t_i].f_Y>f_Y){
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<253>";
+					float t_tDist=bb_yeti_Yeti.g_a[t_i].f_Y-f_Y;
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<254>";
+					if(t_tDist<200.0f){
+						bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<255>";
+						if(t_tDist<t_nDistance){
+							bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<256>";
+							t_nIndex=t_i;
+							bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<257>";
+							t_nDistance=t_tDist;
+						}
+					}
+				}
+			}
+		}
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<264>";
+		bb_std_lang.popErr();
+		return t_nIndex;
+	}
+	public virtual void m_StartTeasing(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<208>";
+		f_Status=4;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<209>";
+		f_D=3;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<210>";
+		f_XS=0.0f;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<211>";
+		f_YS=0.0f;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<212>";
+		f_TargetYeti=m_FindNearestYeti();
+		bb_std_lang.popErr();
+	}
+	public virtual void m_UpdateDazed(){
+		bb_std_lang.pushErr();
+		bb_std_lang.popErr();
+	}
+	public virtual void m_UpdateDead(){
+		bb_std_lang.pushErr();
+		bb_std_lang.popErr();
+	}
+	public virtual void m_UpdateFalling(){
+		bb_std_lang.pushErr();
+		bb_std_lang.popErr();
+	}
+	public float f_MaxYS=.0f;
+	public float f_TargetXS=.0f;
+	public virtual void m_UpdateSkiing(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<118>";
+		f_D=bb_math.bb_math_Clamp(f_D,0,6);
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<120>";
+		if(bb_random.bb_random_Rnd()<0.02f){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<121>";
+			if(bb_random.bb_random_Rnd()<0.2f){
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<122>";
+				f_D=3;
+			}else{
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<124>";
+				if(bb_random.bb_random_Rnd()<0.5f){
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<125>";
+					f_D-=1;
+				}else{
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<127>";
+					f_D+=1;
+				}
+			}
+		}
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<133>";
+		if(f_onFloor){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<134>";
+			int t_=f_D;
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<135>";
+			if(t_==0){
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<136>";
+				f_MaxYS=0.0f;
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<137>";
+				f_TargetXS=0.0f;
+			}else{
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<138>";
+				if(t_==1){
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<139>";
+					f_MaxYS=1.0f;
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<140>";
+					f_TargetXS=-2.0f;
+				}else{
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<141>";
+					if(t_==2){
+						bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<142>";
+						f_MaxYS=2.0f;
+						bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<143>";
+						f_TargetXS=-1.0f;
+					}else{
+						bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<144>";
+						if(t_==3){
+							bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<145>";
+							f_MaxYS=3.0f;
+							bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<146>";
+							f_TargetXS=0.0f;
+						}else{
+							bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<147>";
+							if(t_==4){
+								bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<148>";
+								f_MaxYS=2.0f;
+								bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<149>";
+								f_TargetXS=1.0f;
+							}else{
+								bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<150>";
+								if(t_==5){
+									bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<151>";
+									f_MaxYS=1.0f;
+									bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<152>";
+									f_TargetXS=2.0f;
+								}else{
+									bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<153>";
+									if(t_==6){
+										bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<154>";
+										f_MaxYS=0.0f;
+										bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<155>";
+										f_TargetXS=0.0f;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<158>";
+			if(f_YS>f_MaxYS){
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<159>";
+				f_YS*=1.0f-0.05f*bb__LDApp.g_Delta;
+			}else{
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<161>";
+				f_YS*=1.0f+0.05f*bb__LDApp.g_Delta;
+			}
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<164>";
+			if(f_XS>f_TargetXS-0.05f*bb__LDApp.g_Delta && f_XS<f_TargetXS+0.05f*bb__LDApp.g_Delta){
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<165>";
+				f_XS=f_TargetXS;
+			}else{
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<166>";
+				if(f_XS<f_TargetXS){
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<167>";
+					f_XS+=0.05f*bb__LDApp.g_Delta;
+				}else{
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<168>";
+					if(f_XS>f_TargetXS){
+						bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<169>";
+						f_XS-=0.05f*bb__LDApp.g_Delta;
+					}
+				}
+			}
+		}else{
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<173>";
+			f_ZS+=0.05f*bb__LDApp.g_Delta;
+		}
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<176>";
+		f_X+=f_XS*bb__LDApp.g_Delta;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<177>";
+		f_Y+=f_YS*bb__LDApp.g_Delta;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<178>";
+		f_Z+=f_ZS*bb__LDApp.g_Delta;
+		bb_std_lang.popErr();
+	}
+	public virtual void m_StartSkiing(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<107>";
+		f_Status=0;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<108>";
+		f_Z=0.0f;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<109>";
+		f_D=3;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<110>";
+		f_YS=3.0f;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<111>";
+		f_XS=0.0f;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<112>";
+		f_ZS=-2.0f;
+		bb_std_lang.popErr();
+	}
+	public virtual void m_UpdateTeasing(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<216>";
+		if(bb_random.bb_random_Rnd()<0.05f){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<217>";
+			f_Y=f_Y+1.0f;
+		}
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<220>";
+		if(bb_yeti_Yeti.g_a[f_TargetYeti].f_Y-f_Y<2.0f){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<221>";
+			m_StartSkiing();
+		}else{
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<222>";
+			if(bb_yeti_Yeti.g_a[f_TargetYeti].f_Y-f_Y<50.0f){
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<223>";
+				if(bb_random.bb_random_Rnd()<0.02f){
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<224>";
+					m_StartSkiing();
+				}
+			}
+		}
+		bb_std_lang.popErr();
+	}
+	public override void m_Update(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<87>";
+		int t_=f_Status;
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<88>";
+		if(t_==2){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<89>";
+			m_UpdateDazed();
+		}else{
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<90>";
+			if(t_==3){
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<91>";
+				m_UpdateDead();
+			}else{
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<92>";
+				if(t_==1){
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<93>";
+					m_UpdateFalling();
+				}else{
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<94>";
+					if(t_==0){
+						bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<95>";
+						m_UpdateSkiing();
+					}else{
+						bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<96>";
+						if(t_==4){
+							bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<97>";
+							m_UpdateTeasing();
+						}
+					}
+				}
+			}
+		}
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<100>";
+		if(!m_IsOnScreen()){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<101>";
+			m_Deactivate();
+		}
+		bb_std_lang.popErr();
+	}
+	public static void g_UpdateAll(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<35>";
+		for(int t_i=0;t_i<20;t_i=t_i+1){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<36>";
+			if(g_a[t_i].f_Active==true){
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<37>";
+				if(g_a[t_i].m_IsOnScreen()){
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<38>";
+					g_a[t_i].m_Update();
+				}
+			}
+		}
+		bb_std_lang.popErr();
+	}
+	public override void m_Render(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<230>";
+		bb_gfx_GFX.g_Draw(g_gfxSkiL,f_X,f_Y+f_Z,0,true);
+		bb_std_lang.popErr();
+	}
+	public virtual void m_RenderMarker(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<234>";
+		if(f_X<(float)(bb__LDApp.g_ScreenX)){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<235>";
+			bb_graphics.bb_graphics_DrawImageRect(bb_gfx_GFX.g_Tileset,0.0f,300.0f,0,176,8,9,0);
+		}else{
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<236>";
+			if(f_X>(float)(bb__LDApp.g_ScreenX+bb__LDApp.g_ScreenWidth)){
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<237>";
+				bb_graphics.bb_graphics_DrawImageRect(bb_gfx_GFX.g_Tileset,232.0f,300.0f,8,176,8,9,0);
+			}
+		}
+		bb_std_lang.popErr();
+	}
+	public static void g_RenderAll(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<45>";
+		for(int t_i=0;t_i<20;t_i=t_i+1){
+			bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<46>";
+			if(g_a[t_i].f_Active==true){
+				bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<47>";
+				if(g_a[t_i].m_IsOnScreen()){
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<48>";
+					g_a[t_i].m_Render();
+				}else{
+					bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/src/game/skier.monkey<50>";
+					g_a[t_i].m_RenderMarker();
+				}
+			}
+		}
+		bb_std_lang.popErr();
+	}
+}
+class bb_yeti_YetiStatusTypes : Object{
+}
+class bb_skier_SkierStatusType : Object{
+}
+class bb_entity_EntityMoveDirection : Object{
 }
 class bb_raztext_RazChar : Object{
 	public virtual bb_raztext_RazChar g_RazChar_new(){
@@ -5184,9 +6241,9 @@ class bb_list_Enumerator : Object{
 class bb_{
 	public static int bbMain(){
 		bb_std_lang.pushErr();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<148>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<150>";
 		(new bb__LDApp()).g_LDApp_new();
-		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<149>";
+		bb_std_lang.errInfo="C:/Users/Chris/Documents/GitHub/CM-YATY/ld.monkey<151>";
 		bb_std_lang.popErr();
 		return 0;
 	}
@@ -5248,7 +6305,7 @@ class bb_{
 		bb_controls_Controls.g_TouchPoint=false;
 		bb__LDApp.g_TargetScreenX=0.0f;
 		bb__LDApp.g_ActualScreenX=0;
-		bb__LDApp.g_ScreenMoveRate=0.1f;
+		bb__LDApp.g_ScreenMoveRate=0.4f;
 		bb__LDApp.g_TargetScreenY=0.0f;
 		bb__LDApp.g_ActualScreenY=0;
 		bb__LDApp.g_ScreenX=0;
@@ -5262,8 +6319,20 @@ class bb_{
 		bb_yeti_Yeti.g_gfxRunFront=null;
 		bb_yeti_Yeti.g_gfxRunLeft=null;
 		bb_yeti_Yeti.g_gfxRunRight=null;
+		bb_skier_Skier.g_a=new bb_skier_Skier[0];
+		bb_skier_Skier.g_gfxSkiL=null;
+		bb_skier_Skier.g_gfxSkiLLD=null;
+		bb_skier_Skier.g_gfxSkiLDD=null;
+		bb_skier_Skier.g_gfxSkiD=null;
+		bb_skier_Skier.g_gfxSkiRDD=null;
+		bb_skier_Skier.g_gfxSkiRRD=null;
+		bb_skier_Skier.g_gfxSkiR=null;
 		bb_yeti_Yeti.g_NextYeti=0;
 		bb_dog_Dog.g_NextDog=0;
+		bb_skier_Skier.g_NextSkier=0;
+		bb_sfx_SFX.g_MusicActive=true;
+		bb_sfx_SFX.g_CurrentMusic="";
+		bb_random.bb_random_Seed=1234;
 		return 0;
 	}
 }
@@ -5486,6 +6555,20 @@ class bb_audio{
 		bb_audio.bb_audio_device=t_dev;
 		bb_std_lang.popErr();
 		return 0;
+	}
+	public static int bb_audio_MusicState(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/mojo/audio.monkey<95>";
+		int t_=bb_audio.bb_audio_device.MusicState();
+		bb_std_lang.popErr();
+		return t_;
+	}
+	public static int bb_audio_PlayMusic(String t_path,int t_flags){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/mojo/audio.monkey<79>";
+		int t_=bb_audio.bb_audio_device.PlayMusic(bb_data.bb_data_FixDataPath(t_path),t_flags);
+		bb_std_lang.popErr();
+		return t_;
 	}
 }
 class bb_audiodevice{
@@ -6116,6 +7199,30 @@ class bb_math{
 class bb_monkey{
 }
 class bb_random{
+	public static int bb_random_Seed;
+	public static float bb_random_Rnd(){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/random.monkey<21>";
+		bb_random.bb_random_Seed=bb_random.bb_random_Seed*1664525+1013904223|0;
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/random.monkey<22>";
+		float t_=(float)(bb_random.bb_random_Seed>>8&16777215)/16777216.0f;
+		bb_std_lang.popErr();
+		return t_;
+	}
+	public static float bb_random_Rnd2(float t_low,float t_high){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/random.monkey<30>";
+		float t_=bb_random.bb_random_Rnd3(t_high-t_low)+t_low;
+		bb_std_lang.popErr();
+		return t_;
+	}
+	public static float bb_random_Rnd3(float t_range){
+		bb_std_lang.pushErr();
+		bb_std_lang.errInfo="C:/apps/MonkeyPro66/modules/monkey/random.monkey<26>";
+		float t_=bb_random.bb_random_Rnd()*t_range;
+		bb_std_lang.popErr();
+		return t_;
+	}
 }
 class bb_set{
 }

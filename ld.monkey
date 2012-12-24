@@ -58,7 +58,7 @@ Class LDApp Extends App
 	Global ActualScreenX:Int = 0
 	Global ActualScreenY:Int = 0
 	
-	Global ScreenMoveRate:Float = 0.1
+	Global ScreenMoveRate:Float = 0.4
 	
 	Global RefreshRate:Int
 	Global Delta:Float
@@ -98,6 +98,8 @@ Class LDApp Extends App
 		
 		' Add the music
 		' USE C:\Apps\MusicGen\
+		SFX.AddMusic("ambient", "ambient.mp3")
+		SFX.AddMusic("chase", "chase.mp3")
 		
 		' Set the initial screen details
 		ScreenManager.SetFadeColour(0, 0, 0)
