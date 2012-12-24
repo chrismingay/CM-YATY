@@ -41,12 +41,16 @@ Class Level
 	End
 	
 	Method Render:Void()
+	
+		RenderGui()
+	
 		Dog.RenderAll()
 		Yeti.RenderAll()
 		Skier.RenderAll()
-		txtWait.Draw()
 		
-		RenderGui()
+		' txtWait.Draw()
+		
+		
 	End
 	
 	Method StartPreChase:Void()
@@ -68,11 +72,11 @@ Class Level
 	Method RenderGui:Void()
 		SetColor(255, 255, 255)
 		SetAlpha(1.0)
-		DrawImageRect(GFX.Tileset, 0, 0, 504, 0, 8, 360)
-		DrawImageRect(GFX.Tileset, 6, (Yeti.a[controlledYeti].Y / 50), 464, 0, 10, 10)
+		DrawImageRect(GFX.Tileset, 1, 1, 504, 0, 8, 360)
+		DrawImageRect(GFX.Tileset, 6, 1 + (Yeti.a[controlledYeti].Y / 50), 464, 0, 10, 10)
 		For Local i:Int = 0 Until Skier.MAX_SKIERS
 			If Skier.a[i].Active = True
-				DrawImageRect(GFX.Tileset, 6, (Skier.a[i].Y / 50), 480, 0, 10, 10)
+				DrawImageRect(GFX.Tileset, 6, 1 + (Skier.a[i].Y / 50), 480, 0, 10, 10)
 			EndIf
 		Next
 		

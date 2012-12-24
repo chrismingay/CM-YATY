@@ -165,7 +165,9 @@ Class Yeti Extends Entity
 					TargetXS = 0.0
 			End
 			
-			If YS > MaxYS
+			If YS > MaxYS - 0.05 And YS < MaxYS + 0.05
+				YS = MaxYS
+			ElseIf YS > MaxYS
 				YS *= (1.0 - (0.05 * LDApp.Delta))
 			Else
 				YS += (0.05 * LDApp.Delta)

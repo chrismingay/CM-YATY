@@ -52,8 +52,8 @@ Class Entity
 		Active = False
 	End
 	
-	Method IsOnScreen:Bool()
-		Return RectOverRect(X, Y, W, H, LDApp.ScreenX - SCREEN_PADDING, LDApp.ScreenY - SCREEN_PADDING, LDApp.ScreenWidth + (SCREEN_PADDING * 2), LDApp.ScreenHeight + (SCREEN_PADDING * 2))
+	Method IsOnScreen:Bool(tAdditionalBuffer:Int = 0.0)
+		Return RectOverRect(X, Y, W, H, LDApp.ScreenX - SCREEN_PADDING - tAdditionalBuffer, LDApp.ScreenY - SCREEN_PADDING - tAdditionalBuffer, LDApp.ScreenWidth + (SCREEN_PADDING * 2) + (tAdditionalBuffer * 2), LDApp.ScreenHeight + (SCREEN_PADDING * 2) + (tAdditionalBuffer * 2))
 	End
 	
 End

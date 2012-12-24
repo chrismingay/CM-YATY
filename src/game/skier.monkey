@@ -2,13 +2,7 @@ Import ld
 
 Class Skier Extends Entity
 
-	Global gfxSkiL:Image
-	Global gfxSkiLLD:Image
-	Global gfxSkiLDD:Image
-	Global gfxSkiD:Image
-	Global gfxSkiRDD:Image
-	Global gfxSkiRRD:Image
-	Global gfxSkiR:Image
+	Global gfxSki:Image
 	
 	
 	Global a:Skier[]
@@ -22,21 +16,16 @@ Class Skier Extends Entity
 			a[i] = New Skier(tLev)
 		Next
 		
-		gfxSkiL = GFX.Tileset.GrabImage(70, 128, 22, 32, 1, Image.MidHandle)
-		gfxSkiLLD = gfxSkiL
-		gfxSkiLDD = gfxSkiL
-		gfxSkiD = gfxSkiL
-		gfxSkiRDD = gfxSkiL
-		gfxSkiRRD = gfxSkiL
-		gfxSkiR = gfxSkiL
+		gfxSki = GFX.Tileset.GrabImage(0, 128, 16, 32, 7, Image.MidHandle)
+		
 	End
 	
 	Function UpdateAll:Void()
 		For Local i:Int = 0 Until MAX_SKIERS
 			If a[i].Active = True
-				If a[i].IsOnScreen()
+				'If a[i].IsOnScreen()
 					a[i].Update()
-				EndIf
+				'EndIf
 			End
 		Next
 	End
@@ -44,11 +33,11 @@ Class Skier Extends Entity
 	Function RenderAll:Void()
 		For Local i:Int = 0 Until MAX_SKIERS
 			If a[i].Active = True
-				If a[i].IsOnScreen()
+				'If a[i].IsOnScreen()
 					a[i].Render()
-				Else
+				'Else
 					a[i].RenderMarker()
-				EndIf
+				'EndIf
 			End
 		Next
 	End
@@ -84,6 +73,8 @@ Class Skier Extends Entity
 	
 	Method Update:Void()
 	
+		Super.Update()
+	
 		Select Status
 		Case SkierStatusType.DAZED
 			UpdateDazed()
@@ -97,9 +88,9 @@ Class Skier Extends Entity
 			UpdateTeasing()
 		End
 	
-		If Not IsOnScreen()
-			Deactivate()
-		EndIf
+		'If Not IsOnScreen(1000)
+		'	Deactivate()
+		'EndIf
 	End
 	
 	Method StartSkiing:Void()
@@ -115,19 +106,18 @@ Class Skier Extends Entity
 	
 	Method UpdateSkiing:Void()
 	
-		D = Clamp(D, EntityMoveDirection.L, EntityMoveDirection.R)
-		
 		If Rnd() < 0.02
-			If Rnd() < 0.2
-				D = EntityMoveDirection.D
+			
+			If Rnd() < 0.5
+				D -= 1
 			Else
-				If Rnd() < 0.5
-					D -= 1
-				Else
-					D += 1
-				EndIf
+				D += 1
 			EndIf
 		EndIf
+		
+		
+		D = Clamp(D, EntityMoveDirection.L, EntityMoveDirection.R)
+		
 	
 	
 		If onFloor
@@ -155,10 +145,12 @@ Class Skier Extends Entity
 					TargetXS = 0.0
 			End
 			
-			If YS > MaxYS
+			If YS > MaxYS - 0.05 And YS < MaxYS + 0.05
+				YS = MaxYS
+			ElseIf YS > MaxYS
 				YS *= (1.0 - (0.05 * LDApp.Delta))
-			Else
-				YS *= (1.0 + (0.05 * LDApp.Delta))
+			ElseIf YS < MaxYS
+				YS += (0.05 * LDApp.Delta)
 			EndIf
 			
 			If XS > TargetXS - (0.05 * LDApp.Delta) And XS < TargetXS + (0.05 * LDApp.Delta)
@@ -227,15 +219,61 @@ Class Skier Extends Entity
 	End
 	
 	Method Render:Void()
-		GFX.Draw(gfxSkiL, X, Y + Z, 0)
+		'GFX.Draw(gfxSkiL, X, Y + Z, 0)
+		GFX.Draw(gfxSki, X, Y + Z, D)
 	End
 	
 	Method RenderMarker:Void()
-		If X < LDApp.ScreenX
-			DrawImageRect(GFX.Tileset, 0, 300, 0, 176, 8, 9)
-		ElseIf X > LDApp.ScreenX + LDApp.ScreenWidth
-			DrawImageRect(GFX.Tileset, 232, 300, 8, 176, 8, 9)
+		Local dX:Int = (X - LDApp.ScreenX)
+		Local dY:Int = (Y - LDApp.ScreenY)
+		Local hState:Int = 0
+		Local vState:Int = 0
+		If dX < 0
+			hState = -1
+		ElseIf dX > LDApp.ScreenWidth
+			hState = 1
 		EndIf
+		If dY < 0
+			vState = -1
+		ElseIf dY > LDApp.ScreenHeight
+			vState = 1
+		EndIf
+		
+		Select hState
+			Case -1
+			
+				Select vState
+					Case -1
+						DrawImageRect(GFX.Tileset, 1, 1, 16, 192, 8, 8)
+					Case 0
+						DrawImageRect(GFX.Tileset, 1, dY - 4, 0, 176, 8, 9)
+					Case 1
+						DrawImageRect(GFX.Tileset, 1, LDApp.ScreenHeight - 9, 0, 192, 8, 8)
+				End
+			
+			Case 0
+			
+				Select vState
+					Case -1
+						DrawImageRect(GFX.Tileset, dX - 4, 1, 32, 176, 8, 9)
+					Case 0
+					
+					Case 1
+						DrawImageRect(GFX.Tileset, dX - 4, LDApp.ScreenHeight - 10, 16, 176, 8, 9)
+				End
+			
+			Case 1
+			
+				Select vState
+					Case -1
+						DrawImageRect(GFX.Tileset, LDApp.ScreenWidth - 9, 1, 24, 192, 8, 8)
+					Case 0
+						DrawImageRect(GFX.Tileset, LDApp.ScreenWidth - 9, dY - 4, 8, 176, 8, 9)
+					Case 1
+						DrawImageRect(GFX.Tileset, LDApp.ScreenWidth - 9, LDApp.ScreenHeight - 9, 8, 192, 8, 8)
+				End
+		End
+		
 	End
 	
 	Method Activate:Void()

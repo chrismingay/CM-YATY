@@ -43,6 +43,15 @@
   </ItemGroup>
 <!-- ${CONTENT_BEGIN} -->
   <ItemGroup>
+    <Compile Include="monkey\mojo_font.png">
+      <Name>mojo_font.png</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyEnabled>False</ProcessorParameters_ColorKeyEnabled>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+	   </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="monkey\gfx\fonts.png">
       <Name>fonts.png</Name>
       <Importer>TextureImporter</Importer>
@@ -88,15 +97,6 @@
       <Name>wait.txt</Name>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="monkey\mojo_font.png">
-      <Name>mojo_font.png</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ColorKeyEnabled>False</ProcessorParameters_ColorKeyEnabled>
-      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
-	   </Compile>
   </ItemGroup>
 <!-- ${CONTENT_END} -->
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
