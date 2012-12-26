@@ -91,6 +91,7 @@ Class LDApp Extends App
 		
 		' Add the screens
 		ScreenManager.AddScreen("game", New GameScreen())
+		ScreenManager.AddScreen("title", New TitleScreen())
 		
 		
 		' Add the sound effects
@@ -104,9 +105,9 @@ Class LDApp Extends App
 		' Set the initial screen details
 		ScreenManager.SetFadeColour(0, 0, 0)
 		ScreenManager.SetFadeRate(0.1)
-		ScreenManager.SetScreen("game")
+		ScreenManager.SetScreen("title")
 		
-		If Controls.ControlMethod = ControlMethodTypes.TOUCH
+		If Controls.ControlMethod = ControlMethodTypes.TOUCH 
 			RefreshRate = 30
 		Else
 			RefreshRate = 60

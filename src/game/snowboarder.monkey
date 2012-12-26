@@ -54,6 +54,9 @@ Class SnowBoarder Extends Entity
 	
 	Method New(tLev:Level)
 		level = tLev
+		EnType = EntityType.SNOWBOARDER
+		W = 12
+		H = 16
 	End
 	
 	Method Activate:Void()

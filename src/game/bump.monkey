@@ -54,6 +54,9 @@ Class Bump Extends Entity
 	
 	Method New(tLev:Level)
 		level = tLev
+		EnType = EntityType.BUMP
+		W = 16
+		H = 8
 	End
 	
 	Method Activate:Void()

@@ -75,6 +75,9 @@ Class Yeti Extends Entity
 	
 	Method New(tLev:Level)
 		level = tLev
+		EnType = EntityType.YETI
+		W = 20
+		H = 30
 	End
 	
 	Method Activate:Void()
@@ -231,7 +234,7 @@ Class Yeti Extends Entity
 				D -= 1
 			Else
 				If onFloor
-					XS = -0.2
+					XS = -1
 				EndIf
 			EndIf
 		EndIf
@@ -241,7 +244,7 @@ Class Yeti Extends Entity
 				D += 1
 			Else
 				If onFloor
-					XS = 0.2
+					XS = 1
 				EndIf
 			EndIf
 		EndIf

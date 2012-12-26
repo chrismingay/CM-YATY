@@ -74,6 +74,9 @@ Class Tree Extends Entity
 	
 	Method New(tLev:Level)
 		level = tLev
+		EnType = EntityType.TREE
+		W = 10
+		H = 10
 	End
 	
 	Method Activate:Void()

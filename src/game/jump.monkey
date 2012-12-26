@@ -54,6 +54,9 @@ Class Jump Extends Entity
 	
 	Method New(tLev:Level)
 		level = tLev
+		EnType = EntityType.JUMP
+		W = 20
+		H = 10
 	End
 	
 	Method Activate:Void()

@@ -5,6 +5,7 @@ Class Skier Extends Entity
 	Global gfxSki:Image
 	Global gfxTease:Image
 	Global gfxShadow:Image
+	Global gfxFall:Image
 	
 	
 	Global a:Skier[]
@@ -21,8 +22,9 @@ Class Skier Extends Entity
 		Next
 		
 		gfxSki = GFX.Tileset.GrabImage(0, 128, 16, 32, 7, Image.MidHandle)
-		gfxTease = GFX.Tileset.GrabImage(128, 128, 16, 32, 2, Image.MidHandle)
-		gfxShadow = GFX.Tileset.GrabImage(0,160,16,4,1,Image.MidHandle)
+		gfxTease = GFX.Tileset.GrabImage(112, 128, 16, 32, 2, Image.MidHandle)
+		gfxShadow = GFX.Tileset.GrabImage(0, 160, 16, 4, 1, Image.MidHandle)
+		gfxFall = GFX.Tileset.GrabImage(144, 128, 16, 32, 4, Image.MidHandle)
 		
 	End
 	
@@ -72,11 +74,23 @@ Class Skier Extends Entity
 	Field TargetYeti:Int
 	
 	Field teasingFrame:Int = 0
+	Field teasingFrameTimer:Float
+	
+	Field fallFrame:Int
+	Field fallFrameTimer:Float
+	
+	Field fallTimer:Float
+	
+	Field TargetFlag:Int = 0
 	
 	Const MAX_YS:Float = 10.0
 	
 	Method New(tLev:Level)
 		level = tLev
+		EnType = EntityType.SKIER
+		W = 12
+		H = 16
+		TargetYeti = 0
 	End
 	
 	Method Update:Void()
@@ -94,6 +108,8 @@ Class Skier Extends Entity
 			UpdateSkiing()
 		Case SkierStatusType.TEASING
 			UpdateTeasing()
+		Case SkierStatusType.PRE_TEASING
+			UpdatePreTeasing()
 		End
 	
 		'If Not IsOnScreen(1000)
@@ -114,6 +130,15 @@ Class Skier Extends Entity
 	
 	End
 	
+	Method ContinueSkiing:Void()
+	
+		Status = SkierStatusType.SKIING
+		Z = 0
+		D = EntityMoveDirection.D
+		ZS = 0.0
+		
+	End
+	
 	Method UpdateSkiing:Void()
 	
 		If Rnd() < 0.02
@@ -126,7 +151,7 @@ Class Skier Extends Entity
 		EndIf
 		
 		
-		D = Clamp(D, EntityMoveDirection.L, EntityMoveDirection.R)
+		D = Clamp(D, EntityMoveDirection.L + 1, EntityMoveDirection.R - 1)
 		
 	
 	
@@ -142,7 +167,7 @@ Class Skier Extends Entity
 					MaxYS = 2.0
 					TargetXS = -1.0
 				Case EntityMoveDirection.D
-					MaxYS = 3.0
+					MaxYS = 3.2
 					TargetXS = 0.0
 				Case EntityMoveDirection.RDD
 					MaxYS = 2.0
@@ -179,14 +204,75 @@ Class Skier Extends Entity
 		Y += YS * LDApp.Delta
 		Z += ZS * LDApp.Delta
 		
+		Local colStatus:Int = CheckForCollision()
+		
+		Select colStatus
+		Case EntityType.BUMP
+			ZS = -1
+		Case EntityType.DOG
+			ZS = -1
+			XS *= 0.9
+			YS *= 0.9
+		Case EntityType.FLAG
+			XS *= 0.9
+			YS *= 0.9
+		Case EntityType.JUMP
+			XS *= 2
+			YS *= 2
+			ZS = -3
+		Case EntityType.ROCK
+			StartFalling()
+			XS *= 0.5
+			YS *= 0.5
+		Case EntityType.SNOWBOARDER
+			
+		Case EntityType.TREE
+			StartFalling()
+			XS *= 0.7
+			YS *= 0.7
+		Case EntityType.YETI
+			' TODO END GAME
+		End
+		
 	End
 	
 	Method StartFalling:Void()
 		Local tZ:Float = (Abs(XS) + Abs(YS)) * 0.5
 		ZS = 0 - tZ
+		Status = SkierStatusType.FALLING
+		fallTimer = 0.0
 	End
 	
 	Method UpdateFalling:Void()
+	
+		fallTimer += (1.0 * LDApp.Delta)
+	
+		fallFrameTimer += (1.0 * LDApp.Delta)
+		If fallFrameTimer >= 7.0
+			fallFrameTimer = 0.0
+			fallFrame += 1
+			If fallFrame = 4
+				fallFrame = 0
+			EndIf
+		EndIf
+		
+		If onFloor = True
+			If ZS >= 4.0
+				ZS = 0 - (ZS * 0.5)
+				XS = XS * 0.6
+				YS = YS * 0.6
+			ElseIf fallTimer >= 15.0
+				ContinueSkiing()
+			Else
+				Print fallTimer
+			End
+		EndIf
+		
+		X += XS * LDApp.Delta
+		Y += YS * LDApp.Delta
+		Z += ZS * LDApp.Delta
+		
+		ZS += (0.05 * LDApp.Delta)
 		
 	End
 	
@@ -209,15 +295,36 @@ Class Skier Extends Entity
 	Method StartTeasing:Void()
 		Status = SkierStatusType.TEASING
 		D = EntityMoveDirection.D
-		XS = 0
-		YS = 0
 		TargetYeti = FindNearestYeti()
 	End
 	
 	Method UpdateTeasing:Void()
-		If Rnd() < 0.05
-			Y += 1
+	
+		If YS = 0
+			If teasingFrameTimer > 0
+				teasingFrameTimer -= 1.0 * LDApp.Delta
+				teasingFrame = 1
+			Else
+				teasingFrameTimer = 0
+				teasingFrame = 0
+			End
+		
+			If Rnd() < 0.04
+				Y += 1
+				teasingFrameTimer = 5.0
+			EndIf
+		Else
+			Y += (YS * LDApp.Delta)
 		EndIf
+		
+		
+		If YS <= 0.1
+			YS = 0
+		Else
+			YS *= (1.0 - (0.05 * LDApp.Delta))
+		EndIf
+		
+		
 		
 		If Yeti.a[TargetYeti].Y - Y < 2
 			StartSkiing()
@@ -228,13 +335,51 @@ Class Skier Extends Entity
 		EndIf
 	End
 	
+	Method StartPreTeasing:Void()
+		Status = SkierStatusType.PRE_TEASING
+		D = EntityMoveDirection.D
+		YS = 1.6
+		
+		
+	End
+	
+	Method UpdatePreTeasing:Void()
+	
+		Y += (YS * LDApp.Delta)
+	
+		If TargetYeti >= 0
+			If Yeti.a[TargetYeti].Y - Y < 130
+				If Rnd() < 0.02
+					D = EntityMoveDirection.L
+					StartTeasing()
+				EndIf
+			EndIf
+		EndIf
+		
+	End
+	
 	Method Render:Void()
 		'GFX.Draw(gfxSkiL, X, Y + Z, 0)
-		SetAlpha(0.25)
-		GFX.Draw(gfxShadow, X, Y + 7)
+		If Z < 0
+			SetAlpha(0.25)
+			GFX.Draw(gfxShadow, X - (Z * 1), Y + 7 - (Z * 2))
+		End
 		SetAlpha(1.0)
 		
-		GFX.Draw(gfxSki, X, Y + Z, D)
+		Select Status
+			Case SkierStatusType.TEASING
+				GFX.Draw(gfxTease, X, Y + Z, teasingFrame)
+			Case SkierStatusType.PRE_TEASING
+				GFX.Draw(gfxSki, X, Y + Z, D)
+			Case SkierStatusType.FALLING
+				GFX.Draw(gfxFall, X, Y + Z, fallFrame)
+			Default
+				GFX.Draw(gfxSki, X, Y + Z, D)
+		End
+		
+		DrawText(YS, 10, 10)
+		DrawText(TargetYeti, 10, 30)
+		
 	End
 	
 	Method RenderMarker:Void()
@@ -325,4 +470,5 @@ Class SkierStatusType
 	Const DAZED:Int = 2
 	Const DEAD:Int = 3
 	Const TEASING:Int = 4
+	Const PRE_TEASING:Int = 5
 End

@@ -2,21 +2,24 @@ Import ld
 
 Class Flag Extends Entity
 
-	Global gfxStandFront:Image
+	Global gfxFlag:Image
 
 	Global a:Flag[]
 	Global NextFlag:Int
-	Const MAX_FLAGS:Int = 10
+	Const MAX_FLAGS:Int = 150
 	
 	Function Init:Void(tLev:Level)
 		a = New Flag[MAX_FLAGS]
+		Entity.a[EntityType.FLAG] = New Entity[MAX_FLAGS]
 		For Local i:Int = 0 Until MAX_FLAGS
 			a[i] = New Flag(tLev)
+			Entity.a[EntityType.FLAG][i] = a[i]
 		Next
 		
-		gfxStandFront = GFX.Tileset.GrabImage(0, 80, 16, 16, 1, Image.MidHandle)
+		gfxFlag = GFX.Tileset.GrabImage(0, 272, 16, 16, 2, Image.MidHandle)
 		
-		Entity.Register(EntityType.FLAG, a)
+		NextFlag = 0
+		
 	End
 	
 	Function UpdateAll:Void()
@@ -52,8 +55,13 @@ Class Flag Extends Entity
 		Return tFlag
 	End
 	
+	Field Type:Int
+	
 	Method New(tLev:Level)
 		level = tLev
+		EnType = EntityType.FLAG
+		W = 8
+		H = 16
 	End
 	
 	Method Activate:Void()
@@ -62,14 +70,15 @@ Class Flag Extends Entity
 	
 	Method Update:Void()
 		
-		If Not IsOnScreen()
-			Deactivate()
-		EndIf
-	
 	End
 	
 	Method Render:Void()
-		GFX.Draw(gfxStandFront,X,Y)	
+		GFX.Draw(gfxFlag, X, Y, Type)
 	End
 
+End
+
+Class FlagType
+	Const LEFT_SIDE:Int = 0
+	Const RIGHT_SIDE:Int = 1
 End

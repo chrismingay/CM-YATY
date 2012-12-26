@@ -3,6 +3,7 @@ Import ld
 
 
 Class EntityType
+	Const NONE:Int = -1
 	Const BUMP:Int = 0
 	Const DOG:Int = 1
 	Const FLAG:Int = 2
@@ -29,15 +30,6 @@ Class Entity
 		Next
 	End
 	
-	Function Register:Void(tType:Int, tArray:Entity[])
-		a[tType] = tArray
-		
-		'Local l:Int = tArray.Length
-		'a[tType] = New Entity[l]
-		'For Local i:Int = 0 Until l
-		'	a[tType][i] = tArray
-		'Next
-	End
 
 	Const SCREEN_PADDING:Int = 50
 	
@@ -56,6 +48,8 @@ Class Entity
 	Field level:Level
 	
 	Field Active:Bool
+	
+	Field EnType:Int
 	
 	Method New(tLev:Level)
 		level = tLev
@@ -91,6 +85,25 @@ Class Entity
 	
 	Method IsOnScreen:Bool(tAdditionalBuffer:Int = 0.0)
 		Return RectOverRect(X, Y, W, H, LDApp.ScreenX - SCREEN_PADDING - tAdditionalBuffer, LDApp.ScreenY - SCREEN_PADDING - tAdditionalBuffer, LDApp.ScreenWidth + (SCREEN_PADDING * 2) + (tAdditionalBuffer * 2), LDApp.ScreenHeight + (SCREEN_PADDING * 2) + (tAdditionalBuffer * 2))
+	End
+	
+	Method CheckForCollision:Int()
+	
+		If Z < - 2 Then Return EntityType.NONE
+	
+		For Local Type:Int = 0 Until EntityType.COUNT
+			If EnType <> Type
+				Local l:Int = Entity.a[Type].Length()
+				For Local i:Int = 0 Until l
+					If Entity.a[Type][i].Active = True
+						If RectOverRect(X, Y, W, H, Entity.a[Type][i].X, Entity.a[Type][i].Y, Entity.a[Type][i].W, Entity.a[Type][i].H)
+							Return Type
+						End
+					End
+				Next
+			EndIf
+		Next
+		Return EntityType.NONE
 	End
 	
 End

@@ -11,7 +11,10 @@ Class TitleScreen Extends Screen
 	End
 	
 	Method Update:Void()
-		
+		Rnd()
+		If Controls.ActionHit
+			ScreenManager.ChangeScreen("game")
+		EndIf
 	End
 	
 	Method Render:Void()

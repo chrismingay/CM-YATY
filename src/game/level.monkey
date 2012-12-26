@@ -24,14 +24,17 @@ Class Level
 		Skier.Init(LDApp.level)
 		Tree.Init(LDApp.level)
 		Rock.Init(LDApp.level)
+		Flag.Init(LDApp.level)
 		
 		controlledYeti = Yeti.Create(0, 0)
 		Yeti.a[controlledYeti].StartWaiting()
 		
 		Dog.Create(50, 50)
 		
-		Local firstSkier:Int = Skier.Create(50, -100)
-		Skier.a[firstSkier].StartTeasing()
+		Local firstSkier:Int = Skier.Create(50, -200)
+		Skier.a[firstSkier].TargetYeti = 0
+		Skier.a[firstSkier].StartPreTeasing()
+		
 		
 		LDApp.SetScreenPosition(Yeti.a[controlledYeti].X, Yeti.a[controlledYeti].Y)
 		
@@ -52,7 +55,7 @@ Class Level
 
 	Method Update:Void()
 	
-		LDApp.SetScreenTarget(Yeti.a[controlledYeti].X, Yeti.a[controlledYeti].Y + (LDApp.ScreenHeight * 0.25))
+		LDApp.SetScreenTarget(Yeti.a[controlledYeti].X, Yeti.a[controlledYeti].Y + (LDApp.ScreenHeight * 0.15))
 	
 		Dog.UpdateAll()
 		Yeti.UpdateAll()
@@ -118,6 +121,7 @@ Class Level
 		Skier.RenderAll()
 		Tree.RenderAll()
 		Rock.RenderAll()
+		Flag.RenderAll()
 		
 		RenderTitleFade()
 		' txtWait.Draw()
@@ -177,6 +181,33 @@ End
 
 Function GenerateFlagTrail:Void(tL:Level)
 	
+	Local tX:Int = 0
+	Local subX:Int = 0
+	Local tY:Int = 200
+	Local tStep:Int = 200
+	Local tLeft:Bool = False
+	Local tWidth:Int = 50
+	For Local i:Int = 0 Until Flag.MAX_FLAGS
+		tX = Sin(tY) * tWidth
+		subX = Sin(tY * 3) * tWidth * 0.1
+		
+		Local tF:Int = Flag.Create(tX + subX, tY)
+		';Local tF:Int = Flag.Create(0, tY)
+		
+		
+		If tLeft
+			tLeft = False
+			Flag.a[tF].Type = FlagType.LEFT_SIDE
+		Else
+			tLeft = True
+			Flag.a[tF].Type = FlagType.RIGHT_SIDE
+		EndIf
+		
+		tY += tStep
+		
+	Next
+
+
 End
 
 Function GenerateTrees:Void(tL:Level)
@@ -204,5 +235,19 @@ Function GenerateRocks:Void(tL:Level)
 		Wend
 		
 		Rock.Create(tX, tY)
+	Next
+End
+
+Function GenerateBumps:Void(tL:Level)
+	For Local i:Int = 0 Until Bump.MAX_BUMPS
+	
+		Local tX:Int
+		Local tY:Int
+		
+		tX = Rnd(0 - (Level.Width * 0.5), (Level.Width * 0.5))
+		tY = Rnd(0, (Level.Height))
+		
+		
+		Bump.Create(tX, tY)
 	Next
 End

@@ -75,6 +75,9 @@ Class Rock Extends Entity
 	
 	Method New(tLev:Level)
 		level = tLev
+		EnType = EntityType.ROCK
+		W = 10
+		H = 10
 	End
 	
 	Method Activate:Void()

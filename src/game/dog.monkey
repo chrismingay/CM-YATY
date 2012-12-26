@@ -55,6 +55,9 @@ Class Dog Extends Entity
 	
 	Method New(tLev:Level)
 		level = tLev
+		EnType = EntityType.DOG
+		W = 8
+		H = 8
 	End
 	
 	Method Activate:Void()
