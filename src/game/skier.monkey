@@ -83,6 +83,10 @@ Class Skier Extends Entity
 	
 	Field TargetFlag:Int = 0
 	
+	Const MAX_GETAWAY_POWER:Float = 360.0
+	Field GetawayPower:Float
+	Field GetawayMultiplier:Float = 1.0
+	
 	Const MAX_YS:Float = 10.0
 	
 	Method New(tLev:Level)
@@ -91,6 +95,9 @@ Class Skier Extends Entity
 		W = 12
 		H = 16
 		TargetYeti = 0
+		
+		GetawayPower = MAX_GETAWAY_POWER
+		GetawayMultiplier = 1.0
 	End
 	
 	Method Update:Void()
@@ -186,19 +193,19 @@ Class Skier Extends Entity
 					MaxYS = 0.0
 					TargetXS = 0.0
 				Case EntityMoveDirection.LLD
-					MaxYS = 1.0
+					MaxYS = 1.0 * GetawayMultiplier
 					TargetXS = -2.0
 				Case EntityMoveDirection.LDD
-					MaxYS = 2.0
+					MaxYS = 2.0 * GetawayMultiplier
 					TargetXS = -1.0
 				Case EntityMoveDirection.D
-					MaxYS = 3.2
+					MaxYS = 3.2 * GetawayMultiplier
 					TargetXS = 0.0
 				Case EntityMoveDirection.RDD
-					MaxYS = 2.0
+					MaxYS = 2.0 * GetawayMultiplier
 					TargetXS = 1.0
 				Case EntityMoveDirection.RRD
-					MaxYS = 1.0
+					MaxYS = 1.0 * GetawayMultiplier
 					TargetXS = 2.0
 				Case EntityMoveDirection.R
 					MaxYS = 0.0
@@ -224,6 +231,17 @@ Class Skier Extends Entity
 		Else
 			ZS += (0.05 * LDApp.Delta)
 		End
+		
+		GetawayMultiplier = 1.0
+		
+		If DistanceBetweenPoints(X, Y, Yeti.a[0].X, Yeti.a[0].Y) < 75 And onFloor
+		
+			If GetawayPower >= 0.0
+				GetawayPower -= 1.0 * LDApp.Delta
+				GetawayMultiplier = 1.5
+			EndIf
+		
+		EndIf
 		
 		X += XS * LDApp.Delta
 		Y += YS * LDApp.Delta

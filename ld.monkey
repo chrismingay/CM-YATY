@@ -41,6 +41,7 @@ Import src.game.yeti
 
 ' SCREEN IMPORTS
 'Import src.screens.creditsscreen
+Import src.screens.focusscreen
 Import src.screens.gamescreen
 'Import src.screens.logoscreen
 'Import src.screens.optionsscreen
@@ -103,6 +104,7 @@ Class LDApp Extends App
 		' Use C:\Apps\Aseprite\
 		
 		' Add the screens
+		ScreenManager.AddScreen("focus", New FocusScreen())
 		ScreenManager.AddScreen("game", New GameScreen())
 		ScreenManager.AddScreen("restart", New RestartScreen())
 		'ScreenManager.AddScreen("title", New TitleScreen())
@@ -136,7 +138,7 @@ Class LDApp Extends App
 		' Set the initial screen details
 		ScreenManager.SetFadeColour(0, 0, 0)
 		ScreenManager.SetFadeRate(0.1)
-		ScreenManager.SetScreen("game")
+		ScreenManager.SetScreen("focus")
 		
 		If Controls.ControlMethod = ControlMethodTypes.TOUCH 
 			RefreshRate = 30

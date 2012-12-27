@@ -164,7 +164,7 @@ Class Level
 					congratsFadeMode = 2
 				EndIf
 			Case 2
-				If Controls.ActionHit Or Controls.Action2Hit Or Controls.EscapeHit
+				If Controls.ActionHit Or Controls.Action2Hit Or Controls.EscapeHit Or MouseHit(MOUSE_LEFT)
 					ScreenManager.SetFadeRate(0.01)
 					ScreenManager.ChangeScreen("restart")
 				EndIf
