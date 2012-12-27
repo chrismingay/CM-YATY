@@ -65,15 +65,17 @@ Class Dog Extends Entity
 	End
 	
 	Method Update:Void()
+	
+		Super.Update()
 		
-		If Not IsOnScreen()
-			Deactivate()
-		EndIf
+		'If Not IsOnScreen()
+		'	Deactivate()
+		'EndIf
 	
 	End
 	
 	Method Render:Void()
-		GFX.Draw(gfxStandFront,X,Y)	
+		GFX.Draw(gfxStandFront, X, Y + Z)
 	End
 
 End

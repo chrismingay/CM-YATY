@@ -7,6 +7,9 @@ Class Yeti Extends Entity
 	Global gfxRunLeft:Image
 	Global gfxRunRight:Image
 	
+	Global gfxStopLeft:Image
+	Global gfxStopRight:Image
+	
 	Global gfxShadow:Image
 	
 	
@@ -26,6 +29,9 @@ Class Yeti Extends Entity
 		gfxRunFront = GFX.Tileset.GrabImage(48, 32, 22, 32, 2, Image.MidHandle)
 		gfxRunLeft = GFX.Tileset.GrabImage(48, 64, 22, 32, 2, Image.MidHandle)
 		gfxRunRight = GFX.Tileset.GrabImage(48, 96, 22, 32, 2, Image.MidHandle)
+		
+		gfxStopLeft = GFX.Tileset.GrabImage(92, 32, 22, 32, 1, Image.MidHandle)
+		gfxStopRight = GFX.Tileset.GrabImage(114, 32, 22, 32, 1, Image.MidHandle)
 		
 		gfxShadow = GFX.Tileset.GrabImage(112, 0, 16, 6, 1, Image.MidHandle)
 		
@@ -53,6 +59,7 @@ Class Yeti Extends Entity
 	
 		Local thisYeti:Int = NextYeti
 		a[thisYeti].Activate()
+		a[thisYeti].Collidable = False
 		NextYeti += 1
 		If NextYeti = MAX_YETIS
 			NextYeti = 0
@@ -73,11 +80,14 @@ Class Yeti Extends Entity
 	Field MaxYS:Float
 	Field TargetXS:Float
 	
+	Field stepTimer:Float
+	Field stepTimerThreshold:Float = 25.0
+	
 	Method New(tLev:Level)
 		level = tLev
 		EnType = EntityType.YETI
-		W = 20
-		H = 30
+		W = 12
+		H = 26
 	End
 	
 	Method Activate:Void()
@@ -88,6 +98,24 @@ Class Yeti Extends Entity
 	Method Update:Void()
 	
 		Super.Update()
+		
+		If onFloor
+			stepTimer += (Abs(XS) + Abs(YS)) * LDApp.Delta
+			If stepTimer >= stepTimerThreshold
+				stepTimer = 0.0
+				Local tR:Float = Rnd()
+				If tR < 0.25
+					SFX.Play("SnowStep1", Rnd(0.5, 0.7), 0.0, Rnd(0.8, 1.2))
+				ElseIf tR < 0.5
+					SFX.Play("SnowStep2", Rnd(0.5, 0.7), 0.0, Rnd(0.8, 1.2))
+				ElseIf tR < 0.75
+					SFX.Play("SnowStep3", Rnd(0.5, 0.7), 0.0, Rnd(0.8, 1.2))
+				Else
+					SFX.Play("SnowStep4", Rnd(0.5, 0.7), 0.0, Rnd(0.8, 1.2))
+				EndIf
+				
+			EndIf
+		EndIf
 		
 		aniRunFrameTimer += 1.0 * LDApp.Delta
 		If aniRunFrameTimer >= ANI_RUN_FRAME_TIMER_TARGET
@@ -201,6 +229,48 @@ Class Yeti Extends Entity
 		Y += YS * LDApp.Delta
 		Z += ZS * LDApp.Delta
 		
+		Local colStatus:Int = CheckForCollision()
+		
+		If colStatus <> EntityType.NONE
+		
+			Local tR:Float = Rnd()
+			If tR < 0.25
+				SFX.Play("YetiHit1", Rnd(0.5, 0.7), 0.0, Rnd(0.95, 1.05))
+			ElseIf tR < 0.5
+				SFX.Play("YetiHit2", Rnd(0.5, 0.7), 0.0, Rnd(0.95, 1.05))
+			ElseIf tR < 0.75
+				SFX.Play("YetiHit3", Rnd(0.5, 0.7), 0.0, Rnd(0.95, 1.05))
+			Else
+				SFX.Play("YetiHit4", Rnd(0.5, 0.7), 0.0, Rnd(0.95, 1.05))
+			EndIf
+		EndIf
+		
+		Select colStatus
+		Case EntityType.BUMP
+			ZS = -1
+		Case EntityType.DOG
+			ZS = -1
+			XS *= 0.8
+			YS *= 0.8
+		Case EntityType.FLAG
+			XS *= 0.8
+			YS *= 0.8
+		Case EntityType.JUMP
+			XS *= 2
+			YS *= 2
+			ZS = -3
+		Case EntityType.ROCK
+			XS *= 0.4
+			YS *= 0.4
+		Case EntityType.SNOWBOARDER
+			
+		Case EntityType.TREE
+			XS *= 0.6
+			YS *= 0.6
+		Case EntityType.YETI
+			' TODO END GAME
+		End
+		
 		
 	End
 	
@@ -265,6 +335,8 @@ Class Yeti Extends Entity
 	
 	Method Render:Void()
 	
+		Super.Render()
+	
 		SetAlpha(0.25)
 		GFX.Draw(gfxShadow, X, Y + 12)
 		SetAlpha(1.0)
@@ -292,7 +364,7 @@ Class Yeti Extends Entity
 	Method RenderChasing:Void()
 		Select D
 			Case EntityMoveDirection.L
-				GFX.Draw(gfxStandFront, X, Y + Z, aniWaitFrame)
+				GFX.Draw(gfxStopLeft, X, Y + Z)
 			Case EntityMoveDirection.LLD, EntityMoveDirection.LDD
 				GFX.Draw(gfxRunLeft, X, Y + Z, aniRunFrame)
 			Case EntityMoveDirection.D
@@ -300,7 +372,7 @@ Class Yeti Extends Entity
 			Case EntityMoveDirection.RDD, EntityMoveDirection.RRD
 				GFX.Draw(gfxRunRight, X, Y + Z, aniRunFrame)
 			Case EntityMoveDirection.R
-				GFX.Draw(gfxStandFront, X, Y + Z, aniWaitFrame)
+				GFX.Draw(gfxStopRight, X, Y + Z)
 		End
 	End
 	

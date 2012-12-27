@@ -23,6 +23,8 @@ Class Entity
 
 	Global a:Entity[][]
 	
+	
+	
 	Function Init:Void()
 		a = New Entity[EntityType.COUNT][]
 		For Local i:Int = 0 Until EntityType.COUNT
@@ -44,6 +46,8 @@ Class Entity
 	
 	Field W:Float
 	Field H:Float
+	
+	Field Collidable:Bool = True
 	
 	Field level:Level
 	
@@ -69,10 +73,49 @@ Class Entity
 		Else
 			onFloor = False
 		End
+		
+		If Collidable = False And EnType <> EntityType.YETI And EnType <> EntityType.SKIER
+			PostCollidableUpdate()
+		EndIf
+	End
+	
+	Method StartPostCollidable:Void()
+		XS = Rnd(1.5, 2.5)
+		If Rnd() < 0.5
+			XS = 0 - XS
+		EndIf
+		
+		YS = Rnd(-2, 0.5)
+		
+		ZS = 0 - Rnd(2, 4)
+		Z = ZS
+		
+		
+		Collidable = False
+	End
+	
+	Method PostCollidableUpdate:Void()
+		X += XS * LDApp.Delta
+		Y += YS * LDApp.Delta
+		Z += ZS * LDApp.Delta
+		
+		If onFloor
+			If ZS < 0.5
+				Deactivate()
+				Print "Deactivated " + ZS
+			Else
+			
+				ZS = 0 - (ZS * 0.75)
+				XS *= 0.75
+				YS *= 0.75
+			EndIf
+		EndIf
 	End
 	
 	Method Render:Void()
-		
+		'SetColor(255, 0, 0)
+		'DrawHollowRect(X - (W * 0.5) - LDApp.ScreenX, Y - (H * 0.5) - LDApp.ScreenY, W, H)
+		'SetColor(255, 255, 255)
 	End
 	
 	Method Activate:Void()
@@ -89,14 +132,19 @@ Class Entity
 	
 	Method CheckForCollision:Int()
 	
-		If Z < - 2 Then Return EntityType.NONE
+		If Z < - 2
+			Return EntityType.NONE
+		End
 	
 		For Local Type:Int = 0 Until EntityType.COUNT
 			If EnType <> Type
 				Local l:Int = Entity.a[Type].Length()
 				For Local i:Int = 0 Until l
-					If Entity.a[Type][i].Active = True
-						If RectOverRect(X, Y, W, H, Entity.a[Type][i].X, Entity.a[Type][i].Y, Entity.a[Type][i].W, Entity.a[Type][i].H)
+					If Entity.a[Type][i].Active = True And Entity.a[Type][i].Collidable = True
+						If RectOverRect(X - (W * 0.5), Y - (H * 0.5), W, H, Entity.a[Type][i].X - (Entity.a[Type][i].W * 0.5), Entity.a[Type][i].Y - (Entity.a[Type][i].H * 0.5), Entity.a[Type][i].W, Entity.a[Type][i].H)
+							If EnType = EntityType.YETI
+								Entity.a[Type][i].StartPostCollidable()
+							EndIf
 							Return Type
 						End
 					End

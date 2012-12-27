@@ -55,7 +55,7 @@ Class Skier Extends Entity
 		Local tI:Int = NextSkier
 		a[tI].Activate()
 		a[tI].SetPosition(tX, tY)
-		
+		a[tI].Collidable = False
 		NextSkier += 1
 		If NextSkier >= MAX_SKIERS
 			NextSkier = 0
@@ -127,6 +127,7 @@ Class Skier Extends Entity
 		ZS = -2.0
 		
 		SFX.Music("chase")
+		SFX.Play("SkiStart")
 	
 	End
 	
@@ -142,12 +143,36 @@ Class Skier Extends Entity
 	Method UpdateSkiing:Void()
 	
 		If Rnd() < 0.02
-			
-			If Rnd() < 0.5
-				D -= 1
-			Else
-				D += 1
+		
+			If onFloor
+				Local tR:Float = Rnd()
+				If tR < 0.33
+					SFX.Play("SkiTurn1", SFX.VolumeFromPosition(X, Y), SFX.PanFromPosition(X, Y), Rnd(0.8, 1.2))
+				ElseIf tR < 0.66
+					SFX.Play("SkiTurn2", SFX.VolumeFromPosition(X, Y), SFX.PanFromPosition(X, Y), Rnd(0.8, 1.2))
+				Else
+					SFX.Play("SkiTurn3", SFX.VolumeFromPosition(X, Y), SFX.PanFromPosition(X, Y), Rnd(0.8, 1.2))
+				End
 			EndIf
+		
+			If X < 0 - (Level.Width * 0.5)
+				
+				D += 1
+			
+			ElseIf X > (Level.Width * 0.5)
+			
+				D -= 1
+			
+			Else
+			
+				If Rnd() < 0.5
+					D -= 1
+				Else
+					D += 1
+				EndIf
+			
+			EndIf
+			
 		EndIf
 		
 		
@@ -241,6 +266,8 @@ Class Skier Extends Entity
 		ZS = 0 - tZ
 		Status = SkierStatusType.FALLING
 		fallTimer = 0.0
+		
+		SFX.Play("SkiFall", SFX.VolumeFromPosition(X, Y), SFX.PanFromPosition(X, Y), Rnd(0.8, 1.2))
 	End
 	
 	Method UpdateFalling:Void()
@@ -264,7 +291,7 @@ Class Skier Extends Entity
 			ElseIf fallTimer >= 15.0
 				ContinueSkiing()
 			Else
-				Print fallTimer
+				
 			End
 		EndIf
 		
@@ -296,6 +323,7 @@ Class Skier Extends Entity
 		Status = SkierStatusType.TEASING
 		D = EntityMoveDirection.D
 		TargetYeti = FindNearestYeti()
+		SFX.Play("SkiStop")
 	End
 	
 	Method UpdateTeasing:Void()
@@ -312,6 +340,7 @@ Class Skier Extends Entity
 			If Rnd() < 0.04
 				Y += 1
 				teasingFrameTimer = 5.0
+				SFX.Play("SnowStep4", Rnd(0.2, 0.4), 0.0, Rnd(0.9, 1.1))
 			EndIf
 		Else
 			Y += (YS * LDApp.Delta)
@@ -349,7 +378,7 @@ Class Skier Extends Entity
 	
 		If TargetYeti >= 0
 			If Yeti.a[TargetYeti].Y - Y < 130
-				If Rnd() < 0.02
+				If Rnd() < 0.1
 					D = EntityMoveDirection.L
 					StartTeasing()
 				EndIf
@@ -359,6 +388,9 @@ Class Skier Extends Entity
 	End
 	
 	Method Render:Void()
+	
+		Super.Render()
+	
 		'GFX.Draw(gfxSkiL, X, Y + Z, 0)
 		If Z < 0
 			SetAlpha(0.25)
@@ -376,9 +408,6 @@ Class Skier Extends Entity
 			Default
 				GFX.Draw(gfxSki, X, Y + Z, D)
 		End
-		
-		DrawText(YS, 10, 10)
-		DrawText(TargetYeti, 10, 30)
 		
 	End
 	

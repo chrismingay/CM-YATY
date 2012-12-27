@@ -85,17 +85,20 @@ Class Rock Extends Entity
 	End
 	
 	Method Update:Void()
-		
+		Super.Update()
 	End
 	
 	Method Render:Void()
+	
+		Super.Render()
+	
 		Select Type
 			Case RockType.BOULDER
-				GFX.Draw(gfxRockBoulder, X, Y)
+				GFX.Draw(gfxRockBoulder, X, Y + Z)
 			Case RockType.FLAT
-				GFX.Draw(gfxRockFlat, X, Y)
+				GFX.Draw(gfxRockFlat, X, Y + Z)
 			Case RockType.SPIKEY
-				GFX.Draw(gfxRockSpikey, X, Y)
+				GFX.Draw(gfxRockSpikey, X, Y + Z)
 		End
 	End
 

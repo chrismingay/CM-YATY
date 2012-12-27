@@ -51,3 +51,18 @@ Function DistanceBetweenPoints:Float(x1:Float,y1:Float,x2:Float,y2:Float)
 	Return Sqrt((dX*dX)+(dY*dY))
 End
 
+
+
+Extern
+	#If TARGET="flash"
+		Function RealMillisecs:Int() = "systemMillisecs"
+	#Elseif TARGET="html5"
+		Function RealMillisecs:Int() = "systemMillisecs"
+	#Elseif TARGET="xna"
+		Function RealMillisecs:Int() = "diddy.systemMillisecs"
+	#Else
+		Function RealMillisecs:Int() = "Millisecs"
+	#End
+	
+Public
+

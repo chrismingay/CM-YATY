@@ -261,5 +261,5 @@
       </CursorPos>
     </Document>
   </Files>
-  <CompilerConfig Configuration="release" BuildMode="run" Target="xna" />
+  <CompilerConfig Configuration="debug" BuildMode="run" Target="xna" />
 </JiProj>

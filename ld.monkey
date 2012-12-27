@@ -2,6 +2,14 @@ Strict
 
 Import mojo
 
+#If TARGET="flash"
+Import "src/realmillisecs.as"
+#Elseif TARGET="html5"
+Import "src/realmillisecs.js"
+#Elseif TARGET="xna"
+Import "src/realmillisecs.cs"
+#End
+
 ' FRAMEWORK IMPORTS
 Import src.framework.autofit
 'Import src.framework.camera
@@ -83,6 +91,8 @@ Class LDApp Extends App
 		SFX.Init()
 		Controls.Init()
 		
+		Seed = RealMillisecs()
+		
 		
 		RazText.SetTextSheet(LoadImage("gfx/fonts.png"))
 		
@@ -96,6 +106,23 @@ Class LDApp Extends App
 		
 		' Add the sound effects
 		' USE C:\Apps\sfxr\
+		SFX.Add("SkiStop")
+		SFX.Add("SkiStart")
+		SFX.Add("SkiFall")
+		SFX.Add("SkiTurn1")
+		SFX.Add("SkiTurn2")
+		SFX.Add("SkiTurn3")
+		
+		SFX.Add("SnowStep1")
+		SFX.Add("SnowStep2")
+		SFX.Add("SnowStep3")
+		SFX.Add("SnowStep4")
+		
+		SFX.Add("YetiHit1")
+		SFX.Add("YetiHit2")
+		SFX.Add("YetiHit3")
+		SFX.Add("YetiHit4")
+		
 		
 		' Add the music
 		' USE C:\Apps\MusicGen\

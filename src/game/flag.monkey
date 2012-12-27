@@ -69,11 +69,16 @@ Class Flag Extends Entity
 	End
 	
 	Method Update:Void()
+	
+		Super.Update()
 		
 	End
 	
 	Method Render:Void()
-		GFX.Draw(gfxFlag, X, Y, Type)
+	
+		Super.Render()
+	
+		GFX.Draw(gfxFlag, X, Y + Z, Type)
 	End
 
 End

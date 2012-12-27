@@ -64,10 +64,12 @@ Class Bump Extends Entity
 	End
 	
 	Method Update:Void()
+	
+		Super.Update()
 		
-		If Not IsOnScreen()
-			Deactivate()
-		EndIf
+		'If Not IsOnScreen()
+		'	Deactivate()
+		'EndIf
 	
 	End
 	

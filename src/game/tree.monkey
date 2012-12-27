@@ -84,17 +84,20 @@ Class Tree Extends Entity
 	End
 	
 	Method Update:Void()
-		
+		Super.Update()
 	End
 	
 	Method Render:Void()
+	
+		Super.Render()
+	
 		Select Type
 			Case TreeType.BIG
-				GFX.Draw(gfxBigTree, X, Y)
+				GFX.Draw(gfxBigTree, X, Y + Z)
 			Case TreeType.SMALL
-				GFX.Draw(gfxSmallTree, X, Y)
+				GFX.Draw(gfxSmallTree, X, Y + Z)
 			Case TreeType.STUMP
-				GFX.Draw(gfxTreeStump, X, Y)
+				GFX.Draw(gfxTreeStump, X, Y + Z)
 		End
 		
 	End
