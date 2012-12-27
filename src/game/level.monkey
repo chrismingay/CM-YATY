@@ -21,6 +21,9 @@ Class Level
 	
 	Field congratsText:Image
 	
+	Field controlsText:Image
+	Field controlsTextFade:Float
+	
 	Method New()
 	
 		Entity.Init()
@@ -64,6 +67,9 @@ Class Level
 		
 		
 		congratsText = GFX.Tileset.GrabImage(96, 304, 192, 200, 1, Image.MidHandle)
+		
+		controlsText = GFX.Tileset.GrabImage(272, 0, 160, 66, 1, Image.MidHandle)
+		controlsTextFade = 0.0
 		
 	End
 	
@@ -120,6 +126,14 @@ Class Level
 					titleFadeMode = 2
 				EndIf
 			Case 2
+			
+				If controlsTextFade < 1.0
+					controlsTextFade += 0.02
+				Else
+					controlsTextFade = 1.0
+				EndIf
+				
+				controlsTextFade = Clamp(controlsTextFade, 0.0, 1.0)
 				titleFadeTimer += 1
 				If titleFadeTimer >= 240
 					titleFadeTimer = 0
@@ -161,7 +175,13 @@ Class Level
 		If titleFadeMode >= 1 And titleFadeMode < 4
 			SetAlpha(titleFade)
 			DrawImage(GFX.Title, LDApp.ScreenWidth * 0.5, LDApp.ScreenHeight * 0.5)
+			
+			If titleFadeMode < 3
+				SetAlpha(controlsTextFade)
+			EndIf
+			DrawImage(controlsText, LDApp.ScreenWidth * 0.5, LDApp.ScreenHeight * 0.8)
 			SetAlpha(1.0)
+			
 		EndIf
 	End
 	
