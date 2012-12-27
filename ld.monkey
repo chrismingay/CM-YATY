@@ -26,26 +26,29 @@ Import src.framework.virtualstick
 
 ' GAME IMPORTS
 Import src.game.bump
-Import src.game.dog
+'Import src.game.dog
 Import src.game.entity
 Import src.game.flag
 Import src.game.jump
 Import src.game.level
+Import src.game.particle
 Import src.game.rock
 Import src.game.skier
-Import src.game.snowboarder
+'Import src.game.snowboarder
+Import src.game.snowflake
 Import src.game.tree
 Import src.game.yeti
 
 ' SCREEN IMPORTS
-Import src.screens.creditsscreen
+'Import src.screens.creditsscreen
 Import src.screens.gamescreen
-Import src.screens.logoscreen
-Import src.screens.optionsscreen
-Import src.screens.postgamescreen
-Import src.screens.pregamescreen
-Import src.screens.titlescreen
-Import src.screens.waitjoypadscreen
+'Import src.screens.logoscreen
+'Import src.screens.optionsscreen
+'Import src.screens.postgamescreen
+'Import src.screens.pregamescreen
+Import src.screens.restartscreen
+'Import src.screens.titlescreen
+'Import src.screens.waitjoypadscreen
 
 #XNA_WINDOW_WIDTH=480
 #XNA_WINDOW_HEIGHT=720
@@ -101,7 +104,8 @@ Class LDApp Extends App
 		
 		' Add the screens
 		ScreenManager.AddScreen("game", New GameScreen())
-		ScreenManager.AddScreen("title", New TitleScreen())
+		ScreenManager.AddScreen("restart", New RestartScreen())
+		'ScreenManager.AddScreen("title", New TitleScreen())
 		
 		
 		' Add the sound effects
@@ -132,7 +136,7 @@ Class LDApp Extends App
 		' Set the initial screen details
 		ScreenManager.SetFadeColour(0, 0, 0)
 		ScreenManager.SetFadeRate(0.1)
-		ScreenManager.SetScreen("title")
+		ScreenManager.SetScreen("game")
 		
 		If Controls.ControlMethod = ControlMethodTypes.TOUCH 
 			RefreshRate = 30

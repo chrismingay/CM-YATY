@@ -2,21 +2,22 @@ Import ld
 
 Class Bump Extends Entity
 
-	Global gfxStandFront:Image
+	Global gfxBump:Image
 
 	Global a:Bump[]
 	Global NextBump:Int
-	Const MAX_BUMPS:Int = 10
+	Const MAX_BUMPS:Int = 200
 	
 	Function Init:Void(tLev:Level)
 		a = New Bump[MAX_BUMPS]
+		Entity.a[EntityType.BUMP] = New Entity[MAX_BUMPS]
 		For Local i:Int = 0 Until MAX_BUMPS
 			a[i] = New Bump(tLev)
+			Entity.a[EntityType.BUMP][i] = a[i]
 		Next
 		
-		gfxStandFront = GFX.Tileset.GrabImage(0, 80, 16, 16, 1, Image.MidHandle)
+		gfxBump = GFX.Tileset.GrabImage(0, 208, 16, 16, 2, Image.MidHandle)
 		
-		Entity.Register(EntityType.BUMP, a)
 	End
 	
 	Function UpdateAll:Void()
@@ -52,11 +53,19 @@ Class Bump Extends Entity
 		Return tBump
 	End
 	
+	Field Frame:Int
+	
 	Method New(tLev:Level)
 		level = tLev
 		EnType = EntityType.BUMP
 		W = 16
 		H = 8
+		
+		If Rnd() < 0.5
+			Frame = 0
+		Else
+			Frame = 1
+		EndIf
 	End
 	
 	Method Activate:Void()
@@ -74,7 +83,7 @@ Class Bump Extends Entity
 	End
 	
 	Method Render:Void()
-		GFX.Draw(gfxStandFront,X,Y)	
+		GFX.Draw(gfxBump, X, Y, Frame)
 	End
 
 End

@@ -10,6 +10,8 @@ Class Yeti Extends Entity
 	Global gfxStopLeft:Image
 	Global gfxStopRight:Image
 	
+	Global gfxEating:Image
+	
 	Global gfxShadow:Image
 	
 	
@@ -32,6 +34,8 @@ Class Yeti Extends Entity
 		
 		gfxStopLeft = GFX.Tileset.GrabImage(92, 32, 22, 32, 1, Image.MidHandle)
 		gfxStopRight = GFX.Tileset.GrabImage(114, 32, 22, 32, 1, Image.MidHandle)
+		
+		gfxEating = GFX.Tileset.GrabImage(96, 96, 32, 32, 6, Image.MidHandle)
 		
 		gfxShadow = GFX.Tileset.GrabImage(112, 0, 16, 6, 1, Image.MidHandle)
 		
@@ -82,6 +86,13 @@ Class Yeti Extends Entity
 	
 	Field stepTimer:Float
 	Field stepTimerThreshold:Float = 25.0
+	
+	Field aniEatingFrame:Int
+	Field aniEatingFrameTimer:Float = 0.0
+	Const ANI_EATING_FRAME_TIMER_TARGET:Float = 6.0
+	Field aniEatingGeneralTimer:Int = 0
+	
+	Field aniHappyFrame:Int = 0
 	
 	Method New(tLev:Level)
 		level = tLev
@@ -159,7 +170,7 @@ Class Yeti Extends Entity
 	End
 	
 	Method UpdateWaiting:Void()
-		If Controls.DownHit
+		If Controls.DownHit And Skier.a[0].Status = SkierStatusType.SKIING
 			StartChasing()
 		EndIf
 	End
@@ -233,15 +244,17 @@ Class Yeti Extends Entity
 		
 		If colStatus <> EntityType.NONE
 		
-			Local tR:Float = Rnd()
-			If tR < 0.25
-				SFX.Play("YetiHit1", Rnd(0.5, 0.7), 0.0, Rnd(0.95, 1.05))
-			ElseIf tR < 0.5
-				SFX.Play("YetiHit2", Rnd(0.5, 0.7), 0.0, Rnd(0.95, 1.05))
-			ElseIf tR < 0.75
-				SFX.Play("YetiHit3", Rnd(0.5, 0.7), 0.0, Rnd(0.95, 1.05))
-			Else
-				SFX.Play("YetiHit4", Rnd(0.5, 0.7), 0.0, Rnd(0.95, 1.05))
+			If colStatus <> EntityType.SKIER
+				Local tR:Float = Rnd()
+				If tR < 0.25
+					SFX.Play("YetiHit1", Rnd(0.5, 0.7), 0.0, Rnd(0.95, 1.05))
+				ElseIf tR < 0.5
+					SFX.Play("YetiHit2", Rnd(0.5, 0.7), 0.0, Rnd(0.95, 1.05))
+				ElseIf tR < 0.75
+					SFX.Play("YetiHit3", Rnd(0.5, 0.7), 0.0, Rnd(0.95, 1.05))
+				Else
+					SFX.Play("YetiHit4", Rnd(0.5, 0.7), 0.0, Rnd(0.95, 1.05))
+				EndIf
 			EndIf
 		EndIf
 		
@@ -258,15 +271,20 @@ Class Yeti Extends Entity
 		Case EntityType.JUMP
 			XS *= 2
 			YS *= 2
-			ZS = -3
+			ZS = -2
 		Case EntityType.ROCK
 			XS *= 0.4
-			YS *= 0.4
+			YS = 0 - (YS * 0.5)
 		Case EntityType.SNOWBOARDER
-			
+		
+		Case EntityType.SKIER
+			If Skier.a[0].onFloor And onFloor
+				Skier.a[0].Deactivate()
+				StartEating()
+			EndIf
 		Case EntityType.TREE
 			XS *= 0.6
-			YS *= 0.6
+			YS *= 0.2
 		Case EntityType.YETI
 			' TODO END GAME
 		End
@@ -275,11 +293,33 @@ Class Yeti Extends Entity
 	End
 	
 	Method StartEating:Void()
+		Status = YetiStatusTypes.EATING
+		aniEatingFrame = 0
+		aniEatingFrameTimer = 0.0
 		
+		XS = 0
+		YS = 0
+		Z = 0
+		ZS = 0
 	End
 	
 	Method UpdateEating:Void()
+		aniEatingFrameTimer += 1.0 * LDApp.Delta
+		If aniEatingFrameTimer >= ANI_EATING_FRAME_TIMER_TARGET
+			aniEatingFrameTimer = 0.0
+			aniEatingFrame += 1
+			If aniEatingFrame = 6
+				aniEatingFrame = 4
+			EndIf
+		EndIf
 		
+		aniEatingGeneralTimer += 1
+		
+		If aniEatingGeneralTimer = 120
+			StartWaitingHappy()
+		EndIf
+		
+	
 	End
 	
 	Method StartDazed:Void()
@@ -291,11 +331,25 @@ Class Yeti Extends Entity
 	End
 	
 	Method StartWaitingHappy:Void()
-		
+		Status = YetiStatusTypes.WAITING_HAPPY
+		ZS = 0 - Rnd(1, 2)
+		aniHappyFrame = 0
 	End
 	
 	Method UpdateWaitingHappy:Void()
+	
+		Z += ZS * LDApp.Delta
 		
+		ZS += (0.1 * LDApp.Delta)
+	
+		If Z > 0
+			ZS = 0 - Rnd(1, 2)
+			Z = 0
+			aniHappyFrame += 1
+			If aniHappyFrame = 2
+				aniHappyFrame = 0
+			EndIf
+		EndIf
 	End
 	
 	Method UpdateControlled:Void()
@@ -323,13 +377,6 @@ Class Yeti Extends Entity
 			D = EntityMoveDirection.D
 		EndIf
 		
-		If Controls.UpHit
-			If onFloor
-				ZS = -1.5
-				XS *= 1.5
-				YS *= 1.5
-			EndIf
-		EndIf
 	End
 	
 	
@@ -377,7 +424,7 @@ Class Yeti Extends Entity
 	End
 	
 	Method RenderEating:Void()
-		
+		GFX.Draw(gfxEating, X + 3, Y - 1 + Z, aniEatingFrame)
 	End
 	
 	Method RenderDazed:Void()
@@ -385,7 +432,7 @@ Class Yeti Extends Entity
 	End
 	
 	Method RenderWaitingHappy:Void()
-		
+		GFX.Draw(gfxRunFront, X, Y + Z, aniHappyFrame)
 	End
 
 End

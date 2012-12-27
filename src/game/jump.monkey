@@ -2,21 +2,22 @@ Import ld
 
 Class Jump Extends Entity
 
-	Global gfxStandFront:Image
+	Global gfxJump:Image
 
 	Global a:Jump[]
 	Global NextJump:Int
-	Const MAX_JUMPS:Int = 10
+	Const MAX_JUMPS:Int = 50
 	
 	Function Init:Void(tLev:Level)
 		a = New Jump[MAX_JUMPS]
+		Entity.a[EntityType.JUMP] = New Entity[MAX_JUMPS]
 		For Local i:Int = 0 Until MAX_JUMPS
 			a[i] = New Jump(tLev)
+			Entity.a[EntityType.JUMP][i] = a[i]
 		Next
 		
-		gfxStandFront = GFX.Tileset.GrabImage(0, 80, 16, 16, 1, Image.MidHandle)
+		gfxJump = GFX.Tileset.GrabImage(0, 232, 16, 8, 1, Image.MidHandle)
 		
-		Entity.Register(EntityType.JUMP, a)
 	End
 	
 	Function UpdateAll:Void()
@@ -74,7 +75,7 @@ Class Jump Extends Entity
 	End
 	
 	Method Render:Void()
-		GFX.Draw(gfxStandFront,X,Y + Z)	
+		GFX.Draw(gfxJump,X,Y + Z)	
 	End
 
 End

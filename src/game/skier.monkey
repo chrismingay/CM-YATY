@@ -55,7 +55,7 @@ Class Skier Extends Entity
 		Local tI:Int = NextSkier
 		a[tI].Activate()
 		a[tI].SetPosition(tX, tY)
-		a[tI].Collidable = False
+		a[tI].Collidable = True
 		NextSkier += 1
 		If NextSkier >= MAX_SKIERS
 			NextSkier = 0
@@ -377,11 +377,9 @@ Class Skier Extends Entity
 		Y += (YS * LDApp.Delta)
 	
 		If TargetYeti >= 0
-			If Yeti.a[TargetYeti].Y - Y < 130
-				If Rnd() < 0.1
+			If Yeti.a[TargetYeti].Y - Y < 100
 					D = EntityMoveDirection.L
 					StartTeasing()
-				EndIf
 			EndIf
 		EndIf
 		

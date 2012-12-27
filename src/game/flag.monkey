@@ -12,7 +12,7 @@ Class Flag Extends Entity
 		a = New Flag[MAX_FLAGS]
 		Entity.a[EntityType.FLAG] = New Entity[MAX_FLAGS]
 		For Local i:Int = 0 Until MAX_FLAGS
-			a[i] = New Flag(tLev)
+			a[i] = New Flag(tLev, i)
 			Entity.a[EntityType.FLAG][i] = a[i]
 		Next
 		
@@ -57,11 +57,12 @@ Class Flag Extends Entity
 	
 	Field Type:Int
 	
-	Method New(tLev:Level)
+	Method New(tLev:Level, tID:Int)
 		level = tLev
 		EnType = EntityType.FLAG
 		W = 8
 		H = 16
+		ID = tID
 	End
 	
 	Method Activate:Void()

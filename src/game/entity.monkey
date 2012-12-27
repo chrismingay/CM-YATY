@@ -47,6 +47,8 @@ Class Entity
 	Field W:Float
 	Field H:Float
 	
+	Field ID:Int
+	
 	Field Collidable:Bool = True
 	
 	Field level:Level
@@ -90,6 +92,20 @@ Class Entity
 		ZS = 0 - Rnd(2, 4)
 		Z = ZS
 		
+		Select EnType
+			Case EntityType.TREE
+				CreateTreeParticles(X, Y)
+			Case EntityType.ROCK
+				CreateRockParticles(X, Y)
+			Case EntityType.FLAG
+				CreateFlagParticles(X, Y, Flag.a[ID].Type)
+			Case EntityType.JUMP
+				CreateJumpParticles(X, Y)
+			Case EntityType.BUMP
+				CreateSnowParticles(X, Y)
+		End
+		
+		Deactivate()
 		
 		Collidable = False
 	End
@@ -102,7 +118,6 @@ Class Entity
 		If onFloor
 			If ZS < 0.5
 				Deactivate()
-				Print "Deactivated " + ZS
 			Else
 			
 				ZS = 0 - (ZS * 0.75)
@@ -143,7 +158,9 @@ Class Entity
 					If Entity.a[Type][i].Active = True And Entity.a[Type][i].Collidable = True
 						If RectOverRect(X - (W * 0.5), Y - (H * 0.5), W, H, Entity.a[Type][i].X - (Entity.a[Type][i].W * 0.5), Entity.a[Type][i].Y - (Entity.a[Type][i].H * 0.5), Entity.a[Type][i].W, Entity.a[Type][i].H)
 							If EnType = EntityType.YETI
-								Entity.a[Type][i].StartPostCollidable()
+								If Type <> EntityType.SKIER
+									Entity.a[Type][i].StartPostCollidable()
+								EndIf
 							EndIf
 							Return Type
 						End
