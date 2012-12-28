@@ -10,6 +10,12 @@ Class GameScreen Extends Screen
 		
 		level.Start()
 		
+		Controls.TouchOverlayAlpha = 0.0
+		Controls.TouchOverlayAlphaTarget = 0.0
+		
+		Controls.TouchRestartAlpha = 0.0
+		Controls.TouchRestartAlphaTarget = 0.0
+		
 	End
 	
 	Method OnScreenEnd:Void()
@@ -21,6 +27,11 @@ Class GameScreen Extends Screen
 		If level <> Null
 			level.Update()
 		EndIf
+		
+		If Controls.EscapeHit
+			ScreenManager.SetFadeRate(0.1)
+			ScreenManager.ChangeScreen("exit")
+		EndIf
 	
 	End
 	
@@ -29,6 +40,9 @@ Class GameScreen Extends Screen
 		If level <> Null
 			level.Render()
 		End
+		If Controls.ControlMethod = ControlMethodTypes.TOUCH
+			Controls.RenderTouchScreen()
+		EndIf
 	End
 	
 	Method New()

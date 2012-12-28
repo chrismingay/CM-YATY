@@ -8,6 +8,8 @@ Import "src/realmillisecs.as"
 Import "src/realmillisecs.js"
 #Elseif TARGET="xna"
 Import "src/realmillisecs.cs"
+#Elseif TARGET="android"
+Import "src/realmillisecs.java"
 #End
 
 ' FRAMEWORK IMPORTS
@@ -50,6 +52,7 @@ Import src.screens.gamescreen
 Import src.screens.restartscreen
 'Import src.screens.titlescreen
 'Import src.screens.waitjoypadscreen
+Import src.screens.exitscreen
 
 #XNA_WINDOW_WIDTH=480
 #XNA_WINDOW_HEIGHT=720
@@ -107,6 +110,7 @@ Class LDApp Extends App
 		ScreenManager.AddScreen("focus", New FocusScreen())
 		ScreenManager.AddScreen("game", New GameScreen())
 		ScreenManager.AddScreen("restart", New RestartScreen())
+		ScreenManager.AddScreen("exit", New ExitScreen())
 		'ScreenManager.AddScreen("title", New TitleScreen())
 		
 		
@@ -138,13 +142,20 @@ Class LDApp Extends App
 		' Set the initial screen details
 		ScreenManager.SetFadeColour(0, 0, 0)
 		ScreenManager.SetFadeRate(0.1)
-		ScreenManager.SetScreen("focus")
 		
-		If Controls.ControlMethod = ControlMethodTypes.TOUCH 
-			RefreshRate = 30
-		Else
+		#If TARGET="xna"
+			ScreenManager.SetScreen("game")
+		#ElseIf TARGET="android"
+			ScreenManager.SetScreen("game")
+		#Else
+			ScreenManager.SetScreen("focus")
+		#End
+		
+		'If Controls.ControlMethod = ControlMethodTypes.TOUCH 
+		'	RefreshRate = 30
+		'Else
 			RefreshRate = 60
-		End
+		'End
 		
 		SetUpdateRate(RefreshRate)
 		Delta = RefreshRate / 60.0

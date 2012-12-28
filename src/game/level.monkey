@@ -68,7 +68,12 @@ Class Level
 		
 		congratsText = GFX.Tileset.GrabImage(96, 304, 192, 200, 1, Image.MidHandle)
 		
-		controlsText = GFX.Tileset.GrabImage(272, 0, 160, 66, 1, Image.MidHandle)
+		If Controls.ControlMethod = ControlMethodTypes.TOUCH
+			controlsText = GFX.Tileset.GrabImage(320, 80, 160, 66, 1, Image.MidHandle)
+		Else
+			controlsText = GFX.Tileset.GrabImage(272, 0, 160, 66, 1, Image.MidHandle)
+		EndIf
+		
 		controlsTextFade = 0.0
 		
 	End
@@ -118,6 +123,7 @@ Class Level
 				If titleFadeTimer >= 120
 					titleFadeTimer = 0
 					titleFadeMode = 1
+					Controls.TouchOverlayAlphaTarget = 1.0
 				EndIf
 			Case 1
 				titleFade += 0.02
@@ -138,6 +144,7 @@ Class Level
 				If titleFadeTimer >= 240
 					titleFadeTimer = 0
 					titleFadeMode = 3
+					Controls.TouchOverlayAlphaTarget = 0.25
 				EndIf
 			Case 3
 				titleFade -= 0.01
@@ -155,6 +162,7 @@ Class Level
 					congratsFadeTimer += 1
 					If congratsFadeTimer = 120
 						congratsFadeMode = 1
+						Controls.TouchOverlayAlphaTarget = 0.0
 					EndIf
 				EndIf
 			Case 1
@@ -162,12 +170,22 @@ Class Level
 				If congratsFade >= 1.0
 					congratsFade = 1.0
 					congratsFadeMode = 2
+					Controls.TouchRestartAlphaTarget = 1.0
+					
 				EndIf
 			Case 2
-				If Controls.ActionHit Or Controls.Action2Hit Or Controls.EscapeHit Or MouseHit(MOUSE_LEFT)
-					ScreenManager.SetFadeRate(0.01)
-					ScreenManager.ChangeScreen("restart")
+				If Controls.ControlMethod = ControlMethodTypes.TOUCH
+					If Controls.ActionHit
+						ScreenManager.SetFadeRate(0.01)
+						ScreenManager.ChangeScreen("restart")
+					EndIf
+				Else
+					If Controls.ActionHit Or Controls.Action2Hit Or Controls.EscapeHit Or MouseHit(MOUSE_LEFT)
+						ScreenManager.SetFadeRate(0.01)
+						ScreenManager.ChangeScreen("restart")
+					EndIf
 				EndIf
+				
 		End
 	End
 	
@@ -179,7 +197,7 @@ Class Level
 			If titleFadeMode < 3
 				SetAlpha(controlsTextFade)
 			EndIf
-			DrawImage(controlsText, LDApp.ScreenWidth * 0.5, LDApp.ScreenHeight * 0.8)
+			DrawImage(controlsText, LDApp.ScreenWidth * 0.5, LDApp.ScreenHeight * 0.7)
 			SetAlpha(1.0)
 			
 		EndIf

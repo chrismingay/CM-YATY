@@ -60,6 +60,8 @@ Extern
 		Function RealMillisecs:Int() = "systemMillisecs"
 	#Elseif TARGET="xna"
 		Function RealMillisecs:Int() = "diddy.systemMillisecs"
+	#Elseif TARGET="android"
+		Function RealMillisecs:Int() = "diddy.systemMillisecs"
 	#Else
 		Function RealMillisecs:Int() = "Millisecs"
 	#End
