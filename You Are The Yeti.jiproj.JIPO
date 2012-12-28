@@ -47,8 +47,8 @@
     </DocUserOptions>
     <DocUserOptions Filename=".\src\framework\controls.monkey" Open="true" SplitView="false" SplitIsVertical="false" SplitSize="155">
       <CursorPos>
-        <X>29</X>
-        <Y>417</Y>
+        <X>2</X>
+        <Y>89</Y>
       </CursorPos>
       <OutLiningSerialization>
         <Folding_Nodes_Collection>
@@ -4331,8 +4331,8 @@
     </DocUserOptions>
     <DocUserOptions Filename=".\src\framework\sfx.monkey" Open="true" SplitView="false" SplitIsVertical="false" SplitSize="155">
       <CursorPos>
-        <X>0</X>
-        <Y>0</Y>
+        <X>1</X>
+        <Y>8</Y>
       </CursorPos>
       <OutLiningSerialization>
         <Folding_Nodes_Collection>

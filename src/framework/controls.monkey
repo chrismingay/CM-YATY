@@ -91,7 +91,7 @@ Class Controls
 		#if TARGET = "android"
 			ControlMethod = ControlMethodTypes.TOUCH
 		#elseif TARGET = "xna" Or TARGET = "html5" OR TARGET = "flash"
-			ControlMethod = ControlMethodTypes.TOUCH
+			ControlMethod = ControlMethodTypes.KEYBOARD
 		#endif
 		
 		gfxTouchEscape = GFX.Tileset.GrabImage(144, 160, 16, 16, 1)

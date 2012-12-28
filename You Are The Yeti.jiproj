@@ -296,5 +296,5 @@
       </CursorPos>
     </Document>
   </Files>
-  <CompilerConfig Configuration="release" BuildMode="run" Target="android" />
+  <CompilerConfig Configuration="release" BuildMode="run" Target="xna" />
 </JiProj>
